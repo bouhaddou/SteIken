@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Travaux en bois{% endblock %}
+ {% block stylesheets %}
+   <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="portfolio/css/bootstrap-responsive.css" rel="stylesheet" />
+  <link href="portfolio/css/style.css" rel="stylesheet" />
+  <!-- Theme skin -->
+  <link href="portfolio/skins/default.css" rel="stylesheet" />
+  <!-- Fav and touch icons -->
+ 
+ {% endblock %}
+{% block body %}
+    <section class="page-title-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="page-header-wrap">
+                        <div class="page-header">
+                            <h1>Produits en Métallique</h1>
+                        </div>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Accueil</a></li>
+                            <li class="active">Métalique</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   {% include "partials/produits.html.twig" %}
+{% endblock %}
