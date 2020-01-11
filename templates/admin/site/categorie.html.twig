@@ -1,0 +1,55 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-6">Gestion Catégories</h1>
+                <p class="lead">Cette interface permet  de faire  des ajout, Edition et de  la supprission  des données selon  l'activites de la société AIT IKEN </p>
+                <hr class="my-1">
+            </div>
+        </div>
+    </div>
+    <div class="row"> <!-- debut div row-->
+        <div class="col-md-4"> <!-- debut div col-md-4-->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-info ">Menuiserie Bois</h5>
+                    <hr class="text-danger">
+                    <p class="card-text">mise a jour les données de cette activité Menuiserie Bois</p>
+                    {% set id = 2 %}
+                    <a href="{{ path('categoriePageBois', { 'id': id }) }}" class="btn btn-primary"><i class="fas fa-credit-card"></i> catégorie</a>
+                    <a href="{{ path('ProduitsPage', { 'id': id }) }}" class="btn btn-danger"><i class="fas fa-dolly"></i> Produits</a>
+                </div>
+            </div>
+        </div><!-- fin div col-md-4-->
+        <div class="col-md-4"> <!-- debut div col-md-4-->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Menuiserie Aluminium</h5>
+                    <hr class="text-danger">
+                    <p class="card-text">mise a jour les données de cette activité Menuiserie Aluminium</p>
+                    {% set id = 1 %}
+                    <a href="{{ path('categoriePageBois', { 'id': id }) }}" class="btn btn-primary"><i class="fas fa-credit-card"></i> catégorie</a>
+                    <a href="{{ path('ProduitsPage', { 'id': id }) }}" class="btn btn-success"><i class="fas fa-dolly"></i> Produits</a>
+                </div>
+            </div>
+        </div><!-- fin div col-md-4-->
+        <div class="col-md-4"> <!-- debut div col-md-4-->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Menuiserie Métallique</h5>
+                    <hr class="text-danger">
+                    <p class="card-text">mise a jour les données de cette activité Menuiserie Métallique</p>
+                    {% set id = 3 %}
+                    <a href="{{ path('categoriePageBois', { 'id': id }) }}" class="btn btn-primary"><i class="fas fa-credit-card"></i> catégorie</a>
+                    <a href="{{ path('ProduitsPage', { 'id': id }) }}" class="btn btn-info"><i class="fas fa-dolly"></i> Produits</a>
+                </div>
+            </div>
+        </div><!-- fin div col-md-4-->
+    </div><!-- fin div row-->
+</div>
+{% endblock body %}

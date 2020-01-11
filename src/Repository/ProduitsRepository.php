@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Categorie;
 use App\Entity\Produits;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -17,6 +18,17 @@ class ProduitsRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Produits::class);
+    }
+
+    public function  findNextChrono(Categorie $cat)
+    {
+        return $this->createQueryBuilder("p")
+                    ->join("p.type","t")
+                    ->where("t.Categories = :cat")
+                    ->setParameter("cat", $cat)
+                    ->orderBy("p.id","DESC")
+                    ->getQuery()
+                    ->getResult();
     }
 
     // /**

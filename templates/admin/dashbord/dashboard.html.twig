@@ -1,5 +1,132 @@
 {% extends "admin/base.html.twig" %}				
-                
+
+{% block title %}Tableau de Bord{% endblock %}
+
 {% block body %}
-<h2>sahhs</h2>
+
+<div class="container" > <!-- div container-->
+    <div class="row mt-5"> <!-- div row-->
+        <div class="col-md-3"> <!-- debut div col-md-4-->
+            <div class="row alert alert-dismissible alert-danger m-1">
+                <div class="col-md-9">
+                    <h6>Utilisateurs</h6>
+                    <hr class=" text-info">
+                    <p>100</p>
+                </div>
+                <div class="col-md-1">
+                    <i class="fas fa-users  fa-3x "></i>
+                </div>
+            </div>
+        </div> <!-- fin div col-md-md-3-->
+        <div class="col-md-3"> <!-- debut div col-md-md-4-->
+            <div class="row alert alert-dismissible alert-success m-1 ">
+                <div class="col-md-9">
+                    <h6>Clients</h6>
+                    <hr class=" text-info">
+                    <p>10</p>
+                </div>
+                <div class="col-md-1">
+                    <i class="fas fa-user-tie  fa-3x "></i>
+                </div>
+            </div>
+        </div> <!-- fin div col-md-md-4-->
+        <div class="col-md-3"> <!-- debut div col-md-md-4-->
+            <div class="row alert alert-dismissible alert-info m-1">
+                <div class="col-md-9">
+                    <h6>Fournisseur</h2>
+                    <hr class=" text-light">
+                    <p>50</p>
+                </div>
+                <div class="col-md-1">
+                    <i class="fas fa-people-carry  fa-3x "></i>
+                </div>
+            </div>
+        </div> <!-- fin div col-md-md-3-->
+        <div class="col-md-3"> <!-- debut div col-md-md-3-->
+            <div class="row alert alert-dismissible alert-secondary m-1">
+                <div class="col-md-9">
+                    <h6>Site web</h6>
+                    <hr class=" text-light">
+                    <p>50</p>
+                </div>
+                <div class="col-md-1">
+                    <i class="fab fa-wordpress  fa-3x "></i>
+                </div>
+            </div>
+        </div> <!-- fin div col-md-md-4-->
+    </div> <!-- fin div row-->
+    <div class="row mt-2"><!-- debut div row-->
+        <div class="col-md-6"> <!-- debut div col-md-6-->
+            <div class="alert alert-dismissible alert-primary ">
+                <h3>Gestiion de ...</h3>
+                <table class="table table-hover text-light">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Column </th>
+                            <th>Column </th>
+                            <th>Column </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Active</th>
+                            <td> content</td>
+                            <td> content</td>
+                            <td> content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Active</th>
+                            <td> content</td>
+                            <td> content</td>
+                            <td> content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Active</th>
+                            <td> content</td>
+                            <td> content</td>
+                            <td> content</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- fin div row-->
+        <div class="col-md-6"> <!-- debut div col-md-6-->
+            <div class="alert alert-dismissible alert-secondary ">
+                <h3>Gestiion de ...</h3>
+                <table class="table table-hover text-light">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Column </th>
+                            <th>Column </th>
+                            <th>Column </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Active</th>
+                            <td> content</td>
+                            <td> content</td>
+                            <td> content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Active</th>
+                            <td> content</td>
+                            <td> content</td>
+                            <td> content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Active</th>
+                            <td> content</td>
+                            <td> content</td>
+                            <td> content</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- fin div col-md-6-->
+    </div><!-- fin div row-->
+</div> <!-- end div container-->
+
 {% endblock %}

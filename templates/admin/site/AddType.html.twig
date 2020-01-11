@@ -1,0 +1,15 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+<div class="container mt-2"> <!--debut container-->
+    <div class="alert alert-success text-center">
+      <h2>Gestion de Menuiserie  </h2>
+    </div>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Confirmer</button>
+    {{ form_end(form) }}
+</div><!--fin container-->
+{% endblock body %}
