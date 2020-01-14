@@ -5,12 +5,12 @@
 		<div class="row">
 			<!-- posts-container -->
 			<div class="posts-container">
-				<div class="col-md-8 col-sm-8">
+				<div class="col-md-6 col-sm-6">
 					<h2 class="entry-title text-center"><a href="" rel="">{{ produits.slug | upper  }}</a></h2>
 					<article class="blog-post-wrapper">
 						<div class="figure sticky-post">    
 							<div class="post-thumbnail">
-								<img src="{{ produits.image }}" class="img-responsive " alt="">
+								<img src="{{ asset('upload/'~ produits.image ) }}" class="img-responsive " alt="">
 								<div class="blog-post-overlay"></div>
 								<a class="img-link" href="{{asset('../img/blog/blog-2.jpg') }}"><small>
 									<img src="{{asset('./img/zoomin.png') }}" alt="zoom"></small>
@@ -22,20 +22,22 @@
 					<!-- END PAGINATION -->
 					<div class="clearfix"></div>
 				</div> <!-- /col-md-8 -->
-				<div class="col-md-4 col-sm-4">
+				<div class="col-md-6 col-sm-6">
 					<div class="sidebar-wrapper right-sidebar">
 						<aside class="widget widget_search">
 							<form role="search" method="get" class="search-form">
 								<label>
-									<span class="screen-reader-text">Recherche ...!</span>
-									<input type="search" class="form-control search-field" placeholder="Search" value="" name="s" title="Search for:">
+									<span class="screen-reader-text">Bienvenue ...!</span>
+									<input type="search" class="form-control search-field" placeholder="Bienvenue ...!" value="" name="s" title="Search for:">
 								</label>
-									<button type="submit">Go<i class="fa fa-angle-right"></i></button>
 							</form>
 						</aside>
-							<aside class="widget widget_search">
+						<div class=" p-3 ">
+							 	<h4 class="badge badge-info text-center"> déscription de Produit</h4>
+							</div>
+							<aside class="widget widget_search" style="line-height: 1 rm;">
 							{{ produits.description | raw }}
-						</aside>
+						   </aside>
 						<aside class=" widget widget_recent_entries">
 							<div class="sidebar-tab">
 								<!-- Nav tabs -->
@@ -49,7 +51,7 @@
 										<ul class="tab-recent-post">
 											<li>
 												<div class="tab-post-thumb">
-													<img class="img-responsive" src="{{asset('./img/blog/blog-1.jpg') }}" alt="Image">
+													<img class="img-responsive" src="{{ asset('upload/'~ produits.image ) }}"  alt="Image">
 												</div>
 												<div class="tab-post-heading">
 													<h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
@@ -114,37 +116,7 @@
 						</aside>
 					</div><!-- /.sidebar -->
 					</div><!-- /.col -->
-					<article class="blog-post-wrapper">
-						<div class="figure">    
-							<div id="blog-post-carousel" class="carousel slide blog-carousel" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner">
-									<div class="item active">
-										<div class="post-thumbnail">
-											<img class="img-responsive" src="{{asset('./img/blog/blog-1.jpg') }}" alt=""/>
-										</div>
-									</div>
-									<div class="item">
-										<div class="post-thumbnail">
-											<img class="img-responsive" src="{{asset('./img/blog/blog-2.jpg') }}" alt=""/>
-										</div>
-									</div>
-									<div class="item">
-										<div class="post-thumbnail">
-											<img class="img-responsive" src="{{asset('./img/blog/blog-3.jpg') }}" alt=""/>
-										</div>
-									</div>
-								</div>
-								<!-- Controls -->
-								<a class="left carousel-control" href="#blog-post-carousel" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								</a>
-								<a class="right carousel-control" href="#blog-post-carousel" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								</a>
-							</div>
-						</div><!-- /.figure -->
-					</article>
+					
 			</div> <!-- /posts-container -->
 		</div><!-- /row -->
 	</div><!-- /container -->

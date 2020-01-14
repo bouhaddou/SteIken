@@ -13,11 +13,9 @@
         </div>
         <div class="col-2">
         </div>
-        <div class="col-2">
-           <button class="btn btn-primary w-100"><i class="fas fa-plus text-light"></i> Ajouter </button>
-        </div>
+       
     </div>
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <th>id</th>
@@ -30,20 +28,20 @@
             </tr>
         </thead>
         <tbody>
-        {% for type in types %}
+        {% for produit in produits %}
             <tr>
-                <td>{{ type.id}}</td>
-                <td>{{ type.type.typeCategorie}} Menuiserie {{ type.type.Categories.designation}}</td>
-                <td>{{  type.slug }} </td>
-                <td>{{  type.description | raw   }} </td>
-                <td>{{  type.date }} </td>
+                <td>{{ produit.id}}</td>
+                <td>{{ produit.type.typeCategorie}} Menuiserie {{ produit.type.Categories.designation}}</td>
+                <td>{{ produit.slug }} </td>
+                <td>{{ produit.description | raw   }} </td>
+                <td>{{ produit.date }} </td>
                 <td>
-                <a href="{{  type.image }}">
-                    <img src="{{  type.image }}" class="img-fuild w-100 rounded-pill" height="50px"  /></td>
+                <a href="{{ produit.image }}">
+                    <img src="{{ asset('upload/'~ produit.image ) }}" class="img-fuild rounded-pill" height="50px" width="60px"  /></td>
                 </a>
                 <td>
-                    <a href="" class=""><i class="fas fa-file-export text-success"></i></a>
-                    <a href="" class=" "><i class="fas fa-trash text-danger"></i></a>
+                    <a href="{{ path('ProduitPageEdit',{'id': produit.id}) }}" class=""><i class="fas fa-edit text-success"></i></a>
+                    <a href="{{ path('deleteProduitPage',{'id': produit.id}) }}" class=" "><i class="fas fa-trash-alt text-danger"></i></a>
                 </td>
             </tr>
         {% endfor %}

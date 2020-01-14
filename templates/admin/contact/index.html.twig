@@ -1,0 +1,44 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %} Admin Contact {% endblock %}
+
+{% block body %}
+
+<div class="container"> <!-- debug div container-->
+    <h2 class="alert alert-success text-center" >Listes des Messages</h2>
+    <div class="row mt-5"> <!-- debug diw row-->
+        <div class="col-md-12">
+            <table class="table table-hover small">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom Complete</th>
+                        <th>Email</th>
+                        <th>Objet</th>
+                        <th>Téléphone</th>
+                        <th>Message</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 {% for contact in contacts %}
+                    <tr>
+                        <th>{{ contact.id }}</th>
+                        <td>{{ contact.Name  }}</td>
+                        <td>{{ contact.Email }} </td>
+                        <td>{{ contact.Subject }}</td>
+                        <td>{{ contact.Phone }}</td>
+                        <td>{{ contact.Message | slice(0,50) }} ...</td>
+                        <td>
+                            <a href="" class=""><i class="fas fa-eye text-primary"></i></a>
+                            <a href="" class=""><i class="fas fa-edit text-success"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+    </div> <!-- fin div  row-->
+</div> <!--fin div container-->
+
+{% endblock %}

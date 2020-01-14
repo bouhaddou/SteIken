@@ -1,0 +1,48 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %}Finition{% endblock %}
+
+{% block body %}
+<div class="container mt-2"> <!--debut container-->
+    <div class="alert alert-success text-center">
+    
+      <h2>Gestion de Finition  </h2>
+    </div>
+    <div  class="row m-1 mb-4 border p-2 bg-secondary">
+        <div class="col-8">
+          <input type="text" placeholder="recherche un produit  ......." class="form-control ml-5" >
+        </div>
+        <div class="col-2">
+        </div>
+        <div class="col-2">
+         <a href="{{ path('finitionDetailsNewPage',{'id': id   }) }}" class="btn btn-primary" ><i class="fas fa-plus text-ligth"></i> Ajouter</a>
+        </div>
+    </div>
+    <table class="table table-striped table-hover small">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Finition</th>
+                <th>designation</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for finition in finitions %}
+            <tr>
+                <td> {{ finition.id  }}</td>
+                <td> {{  finition.Finitions.libelle }} </td>
+                <td> {{  finition.designation }} </td>
+                <td> <img src="{{ asset('upload/'~ finition.image ) }}" class="img-fuild rounded-pill" height="50px" width="60px"  /></td>
+                <td>
+                    <a href="{{ path('finitionEditDetailsPage',{'id': finition.id }) }}"  class=" btn btn-link "><i class="fas fa-edit text-success "></i></a>
+                    <a href="{{ path('deleteFinitionDetailsPage',{'id': finition.id }) }}" class="btn btn-link" ><i class="fas fa-trash-alt text-danger"></i></a>
+                </td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+</div><!--fin container-->
+{% endblock body %}

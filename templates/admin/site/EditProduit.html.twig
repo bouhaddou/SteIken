@@ -1,0 +1,16 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %}Mise a jour Produits{% endblock %}
+
+{% block body %}
+<div class="container mt-2"> <!--debut container-->
+    <div class="alert alert-success text-center">
+      <h2>Gestion de Menuiserie {{ produits.type.Categories.designation}} .</h2>
+    </div>
+    <h4 class="text-center">Type : {{ produits.type.typeCategorie }} {{ produits.type.Categories.designation }}</h4>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Confirmer</button>
+    {{ form_end(form) }}
+</div><!--fin container-->
+{% endblock body %}

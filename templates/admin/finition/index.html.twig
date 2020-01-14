@@ -1,0 +1,47 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %}Finition{% endblock %}
+
+{% block body %}
+<div class="container mt-2"> <!--debut container-->
+    <div class="alert alert-success text-center">
+    
+      <h2>Gestion de Finition  </h2>
+    </div>
+    <div  class="row m-1 mb-4 border p-2 bg-secondary">
+        <div class="col-8">
+          <input type="text" placeholder="recherche un produit  ......." class="form-control ml-5" >
+        </div>
+        <div class="col-2">
+        </div>
+        <div class="col-2">
+           <a href="{{ path('finitionNewPage') }} " class="btn text-info bg-light w-100"><i class="fas fa-plus-circle text-info"></i> Ajouter </a>
+        </div>
+    </div>
+    <table class="table table-striped table-hover small">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Finition</th>
+                <th>Nombre de Produit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for finition in finitions %}
+            <tr>
+                <td> {{ finition.id  }}</td>
+                <td> {{  finition.libelle }} </td>
+                <td class=""><span class="badge badge-primary"> {{  finition.finitionDetails | length }} </span></td>
+                <td>
+                    <a href="{{ path('finitionEditPage',{'id': finition.id }) }}"  class=" btn btn-link "><i class="fas fa-edit text-success "></i></a>
+                    <a href="{{ path('deleteFinitionPage',{'id': finition.id}) }}" class="btn btn-link" ><i class="fas fa-trash-alt text-danger"></i></a>
+                    <a href="{{ path('DetailsFinition',{'id': finition.id}) }}" class="btn btn-link" ><i class="fas fa-plus  text-primary"></i></a>
+                </td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+</div><!--fin container-->
+{% endblock body %}

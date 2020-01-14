@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}				
-               {% block title %}Menuiserie Aluminium{% endblock %} 
-                {% block stylesheets %}
-                {% endblock %}
+{% block title %}Menuiserie Aluminium{% endblock %} 
+{% block stylesheets %}
+{% endblock %}
 		{% block body %}
 <section class="page-title-section ">
 	<div class="container">
@@ -23,7 +23,33 @@
 </section>
 <!-- blog-section -->
 {% include "partials/detailspro.html.twig" %}
-                    
 
+{% for finition in finitions %}
+
+<section class="container ">
+	<h3 class="">{{ finition.libelle }}</h3>
+
+     <div class="partner-section">
+		<div class="row row-content">
+		<div class="col-md-12">
+			<div class="owl-carousel partner-carousel">
+				{% for finitionDetails in finition.finitionDetails %}
+				<div class="item">
+				<h6 class="text-center">{{ finitionDetails.designation }}</h6>
+					<a href="#" >
+						<img class="img-fluid m-5"  src="{{ asset('upload/'~ finitionDetails.image ) }}"   alt="">
+					</a>
+				</div>{% endfor %}
+			</div>
+			<div class="partner-carousel-navigation">
+				<a class="prev"><i class="fa fa-angle-left"></i></a>
+				<a class="next"><i class="fa fa-angle-right"></i></a>
+			</div><!-- /.partner-carousel-navigation -->
+		</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
+	</div><!-- /.partner-section -->
+</section>
+<br>
+{% endfor %}  
 {% endblock %}           
                 

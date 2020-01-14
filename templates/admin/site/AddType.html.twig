@@ -5,8 +5,9 @@
 {% block body %}
 <div class="container mt-2"> <!--debut container-->
     <div class="alert alert-success text-center">
-      <h2>Gestion de Menuiserie  </h2>
+      <h2>Gestion de Menuiserie {{ categories.designation}} </h2>
     </div>
+    <h2 class="text-center">Mise à jour Catégorie de Menuiserie {{ categories.designation}} </h2>
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <button type="submit" class="btn btn-success">Confirmer</button>

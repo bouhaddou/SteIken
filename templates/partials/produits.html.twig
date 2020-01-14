@@ -5,7 +5,7 @@
             <ul class="portfolio-categ filter">
               <li class="all active"><a href="#">Tous produits </a></li>
               {% for type in types %}
-              <li class="{{type.typeCategorie}}"><a href="#" title="">{{ type.typeCategorie }}</a></li>
+              <li class="{{ type.typeCategorie|replace({' ': "-"}) }}"><a href="#" title="">{{ type.typeCategorie }}</a></li>
               {% endfor %}
             </ul>
             <div class="clearfix">
@@ -16,26 +16,17 @@
                   <!-- Item Project and Filter Name -->
                  {% for type in types %} 
                  {% for produit in type.produits %}
-                  <li class="item-thumbs span4 design" data-id="id-0" data-type="{{ type.typeCategorie }}">
+                  <li class="item-thumbs span4 design" data-id="id-0" data-type="{{ type.typeCategorie|replace({' ' : '-'}) }}">
                     <!-- Fancybox - Gallery Enabled - Title - Full Image -->
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Portfolio name" href="{{ path("boisDetails",{'id' : produit.id }) }}">
 						    <span class="overlay-img"></span>
 						    <span class="overlay-img-thumb font-icon-plus"></span>
 					    	</a>
                     <!-- Thumb Image and Description -->
-                  <img src="{{ produit.image }}" alt="ddd.">
+                  <img src="{{ asset('upload/'~ produit.image ) }}" alt="ddd.">
                   </li>
                   {% endfor %}
                   {% endfor %}
-                   <li class="item-thumbs span4 design" data-id="id-1" data-type="Portes">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Portfolio name" href="portfolio/img/works/full/image-02-full.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-                    <!-- Thumb Image and Description -->
-                    <img src="portfolio/img/works/thumbs/image-02.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                  </li>
                   <!-- End Item Project -->
                 </ul>
               </section>

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitsRepository")
@@ -23,6 +24,9 @@ class Produits
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min = 4, 
+     *      minMessage = "La désignation ne doit pas inférieur à  {{ limit }} characters "
+     * )
      */
     private $description;
 

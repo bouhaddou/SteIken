@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\FinitionDetailsRepository;
+use App\Repository\FinitionRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\TypesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,14 +28,16 @@ class BoisController extends AbstractController
      * @Route("/boisDetails/{id}", name="boisDetails")
      * 
      */
-    public function boisDetailss(ProduitsRepository $prod ,$id,TypesRepository $typeCa)
+    public function boisDetailss(ProduitsRepository $prod ,$id,TypesRepository $typeCa,FinitionRepository $repo)
     {
 
        $produi = $prod->findOneBy(['id' => $id ]);
        $type = $typeCa->findAll();
+       $finideatils = $repo->findAll();
         return $this->render('bois/produitDetails.html.twig',[
            'produits' => $produi,
-           'typee' => $type
+           'typee' => $type,
+           'finitions' => $finideatils
         ]);
     }
 }
