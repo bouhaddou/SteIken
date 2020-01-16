@@ -1,0 +1,18 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %}Décomptes{% endblock %}
+
+{% block body %}
+<div class="container mt-2"> <!--debut container-->
+    <div class="alert alert-success text-center">
+      <h2>Ajouter le Décompte de  </h2>
+    </div>
+    <h2 class="text-center">Mise à jour Décompte </h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-success">Confirmer</button>
+    {{ form_end(form) }}
+    
+</div><!--fin container-->
+{% endblock body %}

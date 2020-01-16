@@ -1,0 +1,23 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+<div class="container mt-2"> <!--debut container-->
+    <div class="alert alert-success text-center">
+      <h2>Ajouter un Clients </h2>
+    </div>
+    <h2 class="text-center">Mise à jour Clients </h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="form-group">
+    <select name="typeClient" class="form-control">
+        <option value=""></option>
+        <option value="Marchés">Marchés</option>
+        <option value="Particulier">Particulier</option>
+    </select>
+</div>
+    <button type="submit" class="btn btn-success">Confirmer</button>
+    {{ form_end(form) }}
+</div><!--fin container-->
+{% endblock body %}

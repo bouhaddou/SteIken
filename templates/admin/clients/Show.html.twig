@@ -1,0 +1,145 @@
+{% extends "admin/base.html.twig" %}				
+
+{% block title %} {{ clients.NomComplete }}{% endblock %}
+
+{% block body %}
+<div class="container mt-4" style="background-color: grey;"> <!--debut container-->
+    <div class="card">
+        <div class="card-header text-center ">
+           <h3 class="text-info">   {{ clients.NomComplete }}</h3>
+            <p>{{clients.adresse}}</p>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                    <tr>
+                        <th >Montant de Marchés  :</th>
+                        <td class=""> <span> {{ clients.MontantTravaux|number_format(2, '.', ',') }}  dh</span> </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Révision des Prix  :  :</th>
+                        <td scope="col"> <span> {{ clients.RevesionPrix|number_format(2, '.', ',') }}  dh</span> </td>
+                    </tr>
+            </table>
+            <table class="table table-hover mt-2">
+                <legend class=" pl-5  bg-info text-light ">Les Avenants
+               <a href="{{ path('AvenantNewPage',{'id': clients.id }) }}"><span class="float-right mr-2 mt-1 small "><i class="fas fa-plus-square text-light "></i> </span>
+               </a>
+             </legend>
+                <thead>
+                    <tr>
+                        <th class="text-center">Avenants </th>
+                        <th class="">Montant </th>
+                    </tr>
+                </thead>
+                <tbody> 
+                {%  for avenant in clients.avenants %}
+                    <tr>
+                        <td class="text-center">Avenant  N° :{{avenant.Libelle}}</td>
+                        <td >{{ avenant.MontantAvenant|number_format(2, '.', ',')}} dh
+                          <a href="{{path('AvenantEditPage',{'id': avenant.id }) }}"> <span class=" float-right mr-2 btn "><i class="fas fa-edit text-success"></i></span>
+                            </a>
+                        </td>
+                    </tr> 
+                {% endfor %}
+                    <tr class="bg-secondary text-light">
+                      <th>Total des Avenants  :</th>
+                      <th>{{ clients.getTotalAvenant|number_format(2, '.', ',')}}</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="border bg-success text-light mt-3">
+                      <th class="">Montant Total des Travaux  :</th>
+                      <th  class="">{{  (clients.RevesionPrix  + clients.MontantTravaux + clients.getTotalAvenant )|number_format(2, '.', ',')}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="table table-hover mt-3">
+             <legend class="pl-5  bg-info text-light">Les Décomptes
+               <a href="{{ path('DecompteNewPage',{'id': clients.id }) }}"><span class="float-right mr-2 mt-1 small "><i class="fas fa-plus-square 2x text-light "></i> </span>
+               </a>
+             </legend>
+           
+                <thead>
+                    <tr>
+                        <th class="text-center">Décomptes </th>
+                        <th >Montant </th>
+                    </tr>
+                </thead>
+                <tbody> 
+                {%  for decompte in clients.decomptes %}
+                    <tr>
+                        <td class="text-center">Décompte N° :{{decompte.Libelle}}</td>
+                        <td>{{ decompte.MontantDecompte|number_format(2, '.', ',')}} dh
+                         <a href="{{ path('DecompteEditPage',{'id':decompte.id}) }}" <span class=" float-right mr-2 btn "><i class="fas fa-edit text-success"></i></span>
+                        </td>
+                    </tr> 
+                {% endfor %}
+                    <tr class="bg-secondary text-light">
+                      <th>Total des Décomptes :</th>
+                      <th>{{ clients.getTotalDecomptes|number_format(2, '.', ',')}} dh</th>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-hover">
+                    <tr>
+                        <th class="text-center"> Retenue de Garante  :</th>
+                        <td class=""> <span> {{ clients.retenueGrantie|number_format(2, '.', ',') }}  dh</span> </td>
+                    </tr>
+                    <tr>
+                        <th  class="text-center">Retenue de Finition  :</th>
+                        <td scope="col"> <span> {{ clients.retenueFinition|number_format(2, '.', ',') }}  dh</span> </td>
+                    </tr>
+                    <tr>
+                        <th  class="text-center">Pénalités de Retard  :  :</th>
+                        <td scope="col"> <span> {{ clients.penalite|number_format(2, '.', ',') }}  dh</span> </td>
+                    </tr>
+                    <tr>
+                        <th   class="text-center">Prorata  :</th>
+                        <td scope="col"> <span> {{ clients.Prorata|number_format(2, '.', ',') }}  dh</span> </td>
+                    </tr>
+                    
+            </table>
+            <table class="table table-hover">
+                    <tr class="bg-success text-light">
+                        <th >Montant Totale sans Retenue (G-F)  :</th>
+                        <td class=""> <span> {{ clients.CalcMontantTotal|number_format(2, '.', ',') }}  dh</span> </td>
+                    </tr>
+               
+            </table>
+            <table class="table table-hover">
+                    <tr class="bg-danger text-light">
+                        <th>Reste à Payer Avec retenue(G-F) </span></th>
+                        <th   class="text-center">{{ clients.CalcRestAPaye|number_format(2, '.', ',') }}  dh</span></th>   
+                    </tr>
+            </table>
+            
+            
+            <a href="{{ path('clientsPage') }}" class="btn btn-primary">Retour</a>
+        </div>
+    </div>
+</div><!--fin container-->
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

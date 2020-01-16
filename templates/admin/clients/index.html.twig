@@ -1,0 +1,53 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Liste des Clients{% endblock %}
+
+{% block body %}
+<div class="container mt-2"> <!-- debug div container-->
+    <h2 class="alert alert-success text-center" >Liste des Clients</h2>
+    <div class="row mt-5"> <!-- debug diw row-->
+        <div class="col-md-12">
+            <table class="table table-hover small bordered">
+                <thead>
+                    <tr>
+                        <th>Nom Complet</th>
+                         <th class="text-center">M.Travaux </th>
+                         <th class="text-center">R.Prix</th>
+                         <th class="text-center">Avenants
+                         </th>
+                         <th class="text-center">décomptes</th>
+                         <th class="text-center">R.Garante</th>
+                         <th class="text-center">M.Total</th>
+                         <th class="text-center">Reste A Paye</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 {% for client in clients %}
+                    <tr>
+                        <td class="">{{ client.NomComplete }}</td>
+                        <td class="text-center">{{ client.MontantTravaux|number_format(2, '.', ',') }}</td>
+                        <td class="text-center">{{ client.RevesionPrix|number_format(2, '.', ',') }}</td>
+                        <td class="text-center"><span class="badge badge-primary p-1 h2">{{ client.avenants| length }}
+                        <a href="{{ path('AvenantNewPage',{'id': client.id }) }}"><span class=""><i class="fas fa-plus-square text-light "></i> </span></span>
+                        </td>
+                        <td class="text-center"><span class="badge badge-primary p-1 h2">{{ client.decomptes| length }}
+                          <a href="{{ path('DecompteNewPage',{'id': client.id }) }}"><span class="   "><i class="fas fa-plus-square 2x text-light "></i> </span></span>
+                        </td>
+                        <td class="text-center">{{ client.retenueGrantie|number_format(2, '.', ',')}}</td>
+                        <td class="text-center">{{ client.CalcMontantTotal|number_format(2, '.', ',') }}</td>
+                        <td class="text-center">{{ client.CalcRestAPaye|number_format(2, '.', ',') }}</td>
+                        <td>
+                            <a href="{{ path('clientsShowPage',{'id': client.id }) }}" class=" btn p-0"><i class="fas fa-eye text-primary"></i></a>
+                            <alert href="{{ path('clientsEditPage',{'id': client.id }) }}" class="btn p-0"><i class="fas fa-edit text-success"></i></a>
+                            <a href="" class="{% if client.CalcRestAPaye <= 0 %} disabled {% endif %} btn p-0"><i class="fas fa-trash-alt text-danger"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+    </div> <!-- fin div  row-->
+</div> <!--fin div container-->
+
+{% endblock %}
