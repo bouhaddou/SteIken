@@ -39,7 +39,7 @@
                         <td class="text-center">{{ client.CalcRestAPaye|number_format(2, '.', ',') }}</td>
                         <td>
                             <a href="{{ path('clientsShowPage',{'id': client.id }) }}" class=" btn p-0"><i class="fas fa-eye text-primary"></i></a>
-                            <alert href="{{ path('clientsEditPage',{'id': client.id }) }}" class="btn p-0"><i class="fas fa-edit text-success"></i></a>
+                            <a href="{{ path('clientsEditPage',{'id': client.id }) }}" class="btn p-0"><i class="fas fa-edit text-success"></i></a>
                             <a href="" class="{% if client.CalcRestAPaye <= 0 %} disabled {% endif %} btn p-0"><i class="fas fa-trash-alt text-danger"></i></a>
                         </td>
                     </tr>

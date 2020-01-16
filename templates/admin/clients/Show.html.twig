@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header text-center ">
            <h3 class="text-info">   {{ clients.NomComplete }}</h3>
-            <p>{{clients.adresse}}</p>
+            <p>{{clients.objet}}</p>
         </div>
         <div class="card-body">
             <table class="table table-hover">
@@ -20,7 +20,7 @@
                         <td scope="col"> <span> {{ clients.RevesionPrix|number_format(2, '.', ',') }}  dh</span> </td>
                     </tr>
             </table>
-            <table class="table table-hover mt-2">
+            <table class="table table-hover  small">
                 <legend class=" pl-5  bg-info text-light ">Les Avenants
                <a href="{{ path('AvenantNewPage',{'id': clients.id }) }}"><span class="float-right mr-2 mt-1 small "><i class="fas fa-plus-square text-light "></i> </span>
                </a>
@@ -34,10 +34,12 @@
                 <tbody> 
                 {%  for avenant in clients.avenants %}
                     <tr>
-                        <td class="text-center">Avenant  N° :{{avenant.Libelle}}</td>
-                        <td >{{ avenant.MontantAvenant|number_format(2, '.', ',')}} dh
-                          <a href="{{path('AvenantEditPage',{'id': avenant.id }) }}"> <span class=" float-right mr-2 btn "><i class="fas fa-edit text-success"></i></span>
-                            </a>
+                        <td class="text-center m-0 p-0 mt-1">Avenant  N° :{{avenant.Libelle}}</td>
+                        <td class=" m-0 p-0 mt-1">{{ avenant.MontantAvenant|number_format(2, '.', ',')}} dh
+                          <a href="{{path('AvenantEditPage',{'id': avenant.id }) }}"> <span class=" float-right m-0 p-0  mr-5 btn "><i class="fas fa-edit text-success"></i></span>
+                        </a>
+                         <a href="{{ path('deleteAvenantPage',{'id': avenant.id }) }}"><span class="float-right mt-1  mr-3  "><i class="fas fa-trash-alt text-danger "></i> </span>
+                        </a>
                         </td>
                     </tr> 
                 {% endfor %}
@@ -56,12 +58,11 @@
                 </tbody>
             </table>
             
-            <table class="table table-hover mt-3">
+            <table class="table table-hover mt-3 small ">
              <legend class="pl-5  bg-info text-light">Les Décomptes
                <a href="{{ path('DecompteNewPage',{'id': clients.id }) }}"><span class="float-right mr-2 mt-1 small "><i class="fas fa-plus-square 2x text-light "></i> </span>
                </a>
              </legend>
-           
                 <thead>
                     <tr>
                         <th class="text-center">Décomptes </th>
@@ -70,10 +71,14 @@
                 </thead>
                 <tbody> 
                 {%  for decompte in clients.decomptes %}
-                    <tr>
-                        <td class="text-center">Décompte N° :{{decompte.Libelle}}</td>
-                        <td>{{ decompte.MontantDecompte|number_format(2, '.', ',')}} dh
-                         <a href="{{ path('DecompteEditPage',{'id':decompte.id}) }}" <span class=" float-right mr-2 btn "><i class="fas fa-edit text-success"></i></span>
+                    <tr class="client">
+                        <td class="m-0 p-0 mt-1 text-center">Décompte N° :{{decompte.Libelle}}</td>
+                        <td class="m-0 p-0 mt-1">{{ decompte.MontantDecompte|number_format(2, '.', ',')}} dh
+                        
+                         <a href="{{ path('DecompteEditPage',{'id':decompte.id}) }}" <span class="float-right m-0 p-0 mt-1 mr-5 btn "><i class="fas fa-edit text-success"></i></span>
+                         </a>
+                          <a href="{{ path('deleteDecomptePage',{'id': decompte.id }) }}"><span class="float-right mt-1  mr-3  "><i class="fas fa-trash-alt text-danger "></i> </span>
+                        </a>
                         </td>
                     </tr> 
                 {% endfor %}

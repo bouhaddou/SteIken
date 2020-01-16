@@ -26,6 +26,7 @@ class EditClientsType extends AbstractType
     {
         $builder
         ->add('NomComplete',TextType::class,$this->getConfigue('Raison Sociale','Tapez Le Nom de Client',true))
+        ->add('objet',TextareaType::class,$this->getConfigue("objet de Marchés","Tapez l'objet   de Marché",True))
         ->add('telephone',TextType::class,$this->getConfigue('Téléphone','Tapez le Numero de Téléphone de client',false))
         ->add('Adresse',TextareaType::class,$this->getConfigue('Adresse','Tapez  L adresse De Client',true))
         ->add('MontantTravaux',MoneyType::class,$this->getConfigue('Montant des Travaux :','Tapez le Montant des Travaux',false))
