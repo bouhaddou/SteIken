@@ -24,8 +24,8 @@ class EditAvenantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Libelle',TextType::class,$this->getConfigue('Décompte N°','Tapez Le Numero de Décompte',true))
-            ->add('MontantAvenant',MoneyType::class,$this->getConfigue('Montant de Décompte :','Tapez le Montant de Décompte',true))
+            ->add('Libelle',TextType::class,$this->getConfigue('Avenant N°',"Tapez Le Numero de L'Avenant",true))
+            ->add('MontantAvenant',MoneyType::class,$this->getConfigue("Montant de L'Avenant :","Tapez le Montant de L'Avenant",true))
         ;
     }
 

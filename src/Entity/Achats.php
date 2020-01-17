@@ -17,6 +17,7 @@ class Achats
     private $id;
 
     /**
+<<<<<<< HEAD
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;
@@ -31,6 +32,12 @@ class Achats
      * @ORM\Column(type="string", length=255)
      */
     private $Date;
+=======
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseurs", inversedBy="achats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $designation;
+>>>>>>> 707bd74fc9b40f28444986a9bf33a9aff87cad36
 
     /**
      * @ORM\Column(type="float")
@@ -38,15 +45,22 @@ class Achats
     private $Montant;
 
     /**
+<<<<<<< HEAD
      * @ORM\Column(type="boolean")
      */
     private $valide;
+=======
+     * @ORM\Column(type="string", length=255)
+     */
+    private $date;
+>>>>>>> 707bd74fc9b40f28444986a9bf33a9aff87cad36
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
+<<<<<<< HEAD
     public function getLibelle(): ?string
     {
         return $this->libelle;
@@ -79,6 +93,16 @@ class Achats
     public function setDate(string $Date): self
     {
         $this->Date = $Date;
+=======
+    public function getDesignation(): ?Fournisseurs
+    {
+        return $this->designation;
+    }
+
+    public function setDesignation(?Fournisseurs $designation): self
+    {
+        $this->designation = $designation;
+>>>>>>> 707bd74fc9b40f28444986a9bf33a9aff87cad36
 
         return $this;
     }
@@ -95,6 +119,7 @@ class Achats
         return $this;
     }
 
+<<<<<<< HEAD
     public function getValide(): ?bool
     {
         return $this->valide;
@@ -103,6 +128,16 @@ class Achats
     public function setValide(bool $valide): self
     {
         $this->valide = $valide;
+=======
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): self
+    {
+        $this->date = $date;
+>>>>>>> 707bd74fc9b40f28444986a9bf33a9aff87cad36
 
         return $this;
     }

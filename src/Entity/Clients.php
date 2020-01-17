@@ -85,6 +85,11 @@ class Clients
     private $avenants;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $objet;
+
+    /**
      * @ORM\PrePersist
      */
     public function prePersist()
@@ -317,6 +322,18 @@ class Clients
                 $avenant->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getObjet(): ?string
+    {
+        return $this->objet;
+    }
+
+    public function setObjet(?string $objet): self
+    {
+        $this->objet = $objet;
 
         return $this;
     }

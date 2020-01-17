@@ -5,15 +5,17 @@ namespace App\Controller;
 use App\Entity\Avenant;
 use App\Entity\Clients;
 use App\Entity\Decomptes;
-use App\Form\AvenantsType;
 use App\Form\ClientsType;
+use App\Form\AvenantsType;
 use App\Form\DecomptesType;
 use App\Form\EditAvenantType;
 use App\Form\EditDecomptesType;
+use App\Repository\AvenantRepository;
 use App\Repository\ClientsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\DecomptesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ClientsController extends AbstractController
 {
@@ -171,5 +173,30 @@ class ClientsController extends AbstractController
            'clients' => $clients,
            'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/Decompte/{id}/delete", name="deleteDecomptePage")
+     */
+    public function deleteDecompte(Request $request, DecomptesRepository  $repo , $id)
+    {
+    $result = $repo->findOneById($id);
+    $em= $this->getDoctrine()->getManager();
+        $em->remove($result);
+        $em->flush();
+        return $this->redirectToRoute('clientsShowPage',['id' => $result->getClient()->getId()]);
+    }
+
+    /**
+     * @Route("/Avenant/{id}/delete", name="deleteAvenantPage")
+     */
+    public function deleteAvenant(Request $request,AvenantRepository  $repo , $id)
+    {
+     
+    $result = $repo->findOneById($id);
+    $em= $this->getDoctrine()->getManager();
+        $em->remove($result);
+        $em->flush();
+        return $this->redirectToRoute('clientsShowPage',['id' => $result->getClient()->getId()]);
     }
 }
