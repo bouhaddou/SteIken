@@ -23,7 +23,6 @@ class AdminSiteController extends AbstractController
     public function index()
     {
         return $this->render('admin/site/categorie.html.twig', [
-            
         ]);
     }
     

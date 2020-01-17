@@ -272,11 +272,11 @@ OUR SERVICES SECTION
 Featuer Section
 --------------------------------------------------------------------- */
 .feature-section {
-  background: url(../img/feature-bg.jpg) no-repeat;
+  background-color:#F5DEB3;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  color: #fff;
+  color:rgba(0, 0, 0, .5);
 }
 
 
@@ -676,15 +676,15 @@ span.count-description:before {
 }
 
 span.count-description.flaticon-boat:before {
-  content: "\e006";
+  content: "\e045";
 }
 
 span.count-description.flaticon-international:before {
-  content: "\e01d";
+  content: "\e01f";
 }
 
 span.count-description.flaticon-compass:before {
-  content: "\e013";
+  content: "\e015";
 }
 
 /* ------------------------------------------------------------------
