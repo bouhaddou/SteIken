@@ -1,0 +1,43 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Fournisseurs index{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h4 class="text-center mb-3 text-info">Ajouter un nouveaux Fournisseur </h4>
+
+    <table class="table table-hover small">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomComplet</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fournisseur in fournisseurs %}
+            <tr>
+                <td>{{ fournisseur.id }}</td>
+                <td>{{ fournisseur.NomComplet }}</td>
+                <td>{{ fournisseur.Email }}</td>
+                <td>{{ fournisseur.Adresse }}</td>
+                <td>{{ fournisseur.telephone }}</td>
+                <td>
+                    <a class="mr-2" href="{{ path('fournisseurs_show', {'id': fournisseur.id}) }}"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('situation_frs', {'id': fournisseur.id}) }}"><i class="fas fa-eye text-success"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('fournisseurs_new') }}"><i class="fas fa-plus"></i> Enregistrer </a>
+</div>
+{% endblock %}

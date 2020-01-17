@@ -1,0 +1,14 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}New Fournisseurs{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h4 class="text-center text-info mb-3">Créer un nouveau fournisseur</h4>
+
+    {{ include('Admin/fournisseurs/_form.html.twig') }}
+
+    <a class="btn btn-success mt-2" href="{{ path('fournisseurs_index') }}">Retour</a>
+</div>
+
+{% endblock %}

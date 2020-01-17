@@ -1,0 +1,12 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}New Achats{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-info text-center">créer une nouvelle  Achat</h1>
+
+    {{ include('Admin/achats/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('achats_index') }}">Retour</a>
+{% endblock %}

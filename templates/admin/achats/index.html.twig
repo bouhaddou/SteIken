@@ -1,0 +1,44 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Achats index{% endblock %}
+
+{% block body %}
+<div class="container mt-5">  
+    <h1 class="text-info text-center mb-3">Liste des Achats</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Fournisseur</th>
+                <th>Date</th>
+                <th>Montant</th>
+                <th>Valide</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for achat in achats %}
+            <tr>
+                <td>{{ achat.id }}</td>
+                <td>{{ achat.libelle }}</td>
+                <td>{{ achat.Fournisseur.NomComplet }}</td>
+                <td>{{ achat.Date }}</td>
+                <td>{{ achat.Montant }}</td>
+                <td>{{ achat.valide ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('achats_show', {'id': achat.id}) }}">show</a>
+                    <a href="{{ path('achats_edit', {'id': achat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('achats_new') }}">Ajouter une Achat</a>
+{% endblock %}

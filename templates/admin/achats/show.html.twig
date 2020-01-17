@@ -1,0 +1,40 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Achats{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-info text-center mb-4">Achats</h1>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ achat.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ achat.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ achat.Date }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ achat.Montant }}</td>
+            </tr>
+            <tr>
+                <th>Valide</th>
+                <td>{{ achat.valide ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('achats_index') }}">Retour</a>
+
+    <a href="{{ path('achats_edit', {'id': achat.id}) }}">Modifier</a>
+
+    {{ include('Admin/achats/_delete_form.html.twig') }}
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Fournisseurs{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h4 class="text-info text-center mb-4">Fournisseur <strong class="text-dark"> {{ fournisseur.NomComplet }}</strong></h4>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fournisseur.id }}</td>
+            </tr>
+            <tr>
+                <th>NomComplet</th>
+                <td>{{ fournisseur.NomComplet }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ fournisseur.Email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ fournisseur.Adresse }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ fournisseur.telephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+     <div class="col">
+        <a class=" mt-3" href="{{ path('fournisseurs_index') }}">Retour</a>
+     </div>
+     <div class="col">
+        <a class=" mt-3" href="{{ path('fournisseurs_edit', {'id': fournisseur.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
+     </div>
+     <div class="col">
+     {{ include('Admin/fournisseurs/_delete_form.html.twig') }}
+     </div>
+    </div>
+
+    
+
+    
+{% endblock %}

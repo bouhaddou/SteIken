@@ -24,14 +24,17 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fas fa-people-carry text-danger "></i> Fournissuer
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="{{ path('fournisseurs_index') }}">Liste fournisseurs</a>
+          <a class="dropdown-item" href="{{path('achats_index')}}">Liste des Achats</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="{{ path('regelement_index') }}">Régelement</a>
+          <a class="dropdown-item" href="{{ path('mode_regelement_index') }}">Mode de Régelement</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ path('situation_frs') }}">Situation</a>
         </div>
       </li>
       <li class="nav-item dropdown">
