@@ -1,0 +1,154 @@
+  <!-- footer-widget-section start -->
+			        <section class="footer-widget-section section-padding">
+			        	<div class="container">
+			        		<div class="row">
+			        			<div class="col-md-3 col-md-offset-1 col-sm-4 text-center">
+			        				<div class="footer-widget">
+			        					<h3>Lieu &amp; Contact</h3>
+
+										<address>
+										 N° 112 Quartier Industriel<br>
+										  Ouarzazate , Maroc<br>
+
+										  <!-- Google Map Modal Trigger -->
+										  <button type="button" class="modal-map" data-toggle="modal" data-target="#cssMapModal">Localisation  Maps</button>
+
+										  <span class="tel">+212 662 605 504</span>
+										</address>
+
+
+										<!-- Modal -->
+										<div class="modal fade" id="cssMapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-lg">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h4 class="modal-title" id="myModalLabel">Notre  Localisation</h4>
+										      </div>
+										      <div class="modal-body">
+
+											    <div id="">
+												<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3422.178687500167!2d-6.938451791377051!3d30.93757359146463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xff1f46ff342715df!2ssociete%20ait%20iken!5e0!3m2!1sfr!2sma!4v1579304374447!5m2!1sfr!2sma" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+												</div>
+											    
+										      </div>
+										    </div><!-- /.modal-content -->
+										  </div><!-- /.modal-dialog -->
+										</div><!-- End Modal -->
+			        				</div><!-- /.footer-widget -->
+			        			</div><!-- /.col-md-4 -->
+
+			        			<div class="col-md-3 col-sm-4 text-center">
+			        				<div class="footer-widget">
+			        					<h3>À propos de AIT IKEN SARL</h3>
+
+			        					<ul>
+                                        	<li><a href="{{ path('homePage') }}">Accueil</a></li>
+                                            <li><a href="{{path('presentationPage') }}">Présentation</a></li>
+                                            <li><a  href="{{path('boisPage') }}">Menuiserie Bois</a></li>
+                                            <li><a href="{{path('aluminiumPage') }}">Menuiserie Aluminium</a></li>
+                                            <li><a  href="{{path('metalliquePage') }}">Menuiserie Métallique</a></li>
+                                        </ul>
+			        				</div><!-- /.footer-widget -->
+			        			</div><!-- /.col-md-4 -->
+
+			        			<div class="col-md-4 col-sm-4 text-center">
+			        				<div class="footer-widget">
+			        					<h3>Reste en contact</h3>
+			        					<p>Entrez votre adresse e-mail pour recevoir des nouvelles &amp;  de notre part</p>
+
+										<form class="newsletter-form">
+											<div class="form-group">
+												<label class="sr-only" for="InputEmail1"> Address Email </label>
+												<input type="email" class="form-control" id="InputEmail1" placeholder="Votre Adresse  email ">
+												<button type="submit" class="">Envoyer &nbsp;<i class="fa fa-angle-right"></i></button>
+											</div>
+										</form>		        				
+									</div><!-- /.footer-widget -->
+			        			</div><!-- /.col-md-4 -->
+			        		</div><!-- /.row -->
+			        	</div><!-- /.container -->
+			        </section><!-- /.cta-section -->
+			        <!-- footer-widget-section end -->
+
+			        <!-- copyright-section start -->
+			        <footer class="copyright-section">
+			        	<div class="container text-center">
+			        		<div class="footer-menu">
+			        			<ul>
+			        				<li><a href="#">Privacy &amp; Cookies</a></li>
+			        				<li><a href="#">Termes  &amp; conditions</a></li>
+			        				<li><a href="#">Accessibilité</a></li>
+			        			</ul>
+			        		</div>
+
+			        		<div class="copyright-info">
+			        			<span>Copyright © 2020 AIT IKEN. Tous les droits sont réservés. Développer par <a href="https://www.facebook.com/brahim.bouhdou">Brahim bouhaddou</a><br></span>
+			        		</div>
+			        	</div><!-- /.container -->
+			        </footer>
+			        <!-- copyright-section end -->
+	    		</div> <!-- .st-content -->
+		    </div> <!-- .st-pusher -->
+			
+			<!-- OFF CANVAS MENU -->
+	    	<div class="offcanvas-menu offcanvas-effect">
+	    		<div class="offcanvas-wrap">
+			        <div class="off-canvas-header">
+			        	<button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="off-canvas-close-btn">&times;</button>
+			        </div>
+			        <ul id ="offcanvasMenu" class="list-unstyled visible-xs visible-sm">
+			            <li class="active"><a href="{{path('homePage') }}">Accueil<span class="sr-only">(current)</span></a></li>
+						<li class=""><a  href="{{path('presentationPage') }}">Présentation</a></li>
+			            <li>
+			            	<a href="#">Menuiserie Bois</a>
+			            	<ul>
+								<li><a href="{{path('boisPage') }}">Menuiserie Bois</a></li>
+							</ul>
+			            </li>
+						<li>
+			            	<a href="#">Menuiserie Aluminium </a>
+			            	<ul>
+								<li><a  href="{{path('aluminiumPage') }}">Menuiserie Aluminium</a></li>
+							</ul>
+			            </li>
+						<li>
+			            	<a href="#">Menuiserie Métallique</a>
+			            	<ul>
+								<li><a href="{{path('metalliquePage') }}">Menuiserie Métallique</a></li>
+							</ul>
+			            </li>
+			            <li>
+			            	<a href="#">Portefolio</a>
+							<ul>
+			            		<li>
+			            			<a href="">soom</a>
+			            		</li>
+			            		<li>
+			            			<a href="">soom 2</a>
+			            		</li>
+			            	</ul>
+			            </li>
+			            <li><a href="{{ path('contactPage') }}">Contact</a></li>
+			        </ul>
+			        <div class="offcanvas-widgets hidden-sm hidden-xs">
+				        <div id="twitterWidget">
+							<h2>Tweeter feed</h2>				    	
+							<div class="twitter-widget"></div>
+						</div>
+						<div class="newsletter-widget">
+							<h2>Stay in Touch</h2>
+							<p>Enter your email address to receive news &amp; offers from us</p>
+
+							<form class="newsletter-form">
+								<div class="form-group">
+									<label class="sr-only" for="InputEmail1">Email address</label>
+									<input type="email" class="form-control" id="InputEmail2" placeholder="Your email address">
+									<button type="submit" class="btn">Send &nbsp;<i class="fa fa-angle-right"></i></button>
+								</div>
+							</form>		
+							       				
+						</div><!-- newsletter-widget -->
+					</div>
+				</div>
+	      	</div><!-- .offcanvas-menu -->

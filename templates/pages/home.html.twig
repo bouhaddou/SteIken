@@ -23,7 +23,7 @@
 
                                         <p class="lead animated lightSpeedIn"></p>
 
-                                        <a class="btn btn-primary animated lightSpeedIn" href="#">Découvrir Notre Société</a>
+                                        <a class="btn btn-primary animated lightSpeedIn" href="{{ path('presentationPage') }}">Découvrir Notre Société</a>
                                     </div>
                                     <!--.carousel-caption-->
                                 </div>
@@ -41,7 +41,7 @@
                                         <h1 class="animated bounceIn">Bienvenue !! Consultez Nos Activités</h1>
 
                                         <p class="lead animated bounceIn"></p>
-                                        <a class="btn btn-primary animated bounceIn" href="#">Découvrir Notre Société</a>
+                                        <a class="btn btn-primary animated bounceIn" href="{{ path('presentationPage') }}">Découvrir Notre Société</a>
                                     </div>
                                     <!--.carousel-caption-->
                                 </div>
@@ -70,13 +70,13 @@
 			              <div class="row">
 			                <div class="col-xs-12">
 			                  <h2 class="section-title"><strong>Socéité AIT IKEN SARL</strong></h2>
-			                  <span class="section-sub">Bienvenue sur le site de la Société <strong> <span class="text-info"> AIT IKEN </span></strong>, nous sommes heureux de vous accueillir,
+			                  <span class="section-sub">Bienvenue sur le site de la Société <strong> <span class="text-info"> AIT IKEN SARL</span></strong>, nous sommes heureux de vous accueillir,
                                en espérant répondre à votre demande.</span>
 			                </div>
 			              </div> <!-- /.row -->
 
 			              <div class="row content-row">
-			              	<div class="col-sm-4">
+			              	<div class="col-md-4">
 			              		<div class="service">
 				              		<div class="service-thumb-home">
 				              			<a href="#"><img src="img/ste/bois.jpg" alt=""></a>
@@ -86,12 +86,12 @@
 				              		<p>
                                       Menuisiers qualifiés, nous sommes à votre service depuis 15 ans
                                        pour tous vos travaux de fermeture. Nous réalisons des fenêtres, des portes d'entrée, 
-                                       mais aussi des portes de garage en bois ou en PVC.
-				              		<a class="readmore" href="#">Lire la suite &nbsp;<i class="fa fa-angle-right"></i> </a>
+                                       mais aussi des portes de garage en bois ou en PVC.</p>
+				              		<a class="readmore" href="{{ path('boisPage') }}">Lire la suite &nbsp;<i class="fa fa-angle-right"></i> </a>
 			              		</div>
-			              	</div><!-- /.col-sm-4 -->
+			              	</div><!-- /.col-md-4 -->
 
-			              	<div class="col-sm-4">
+			              	<div class="col-md-4">
 			              		<div class="service">
 				              		<div class="service-thumb-home">
 				              			<a href="#"><img src="img/ste/alum.jpg" alt=""></a>
@@ -100,12 +100,12 @@
 				              		<p> Aluminium ou PVC, notre entreprise maîtrise l'art de la pose, de l'entretien et du
                                        dépannage de tous types de menuiseries. Economisez et investissez
                                         dans votre bien immobilier en rénovant vos fenêtres </p>
-				              		<a class="readmore" href="#">Lire la suite &nbsp;<i class="fa fa-angle-right"></i> </a>
+				              		<a class="readmore" href="{{ path('aluminiumPage') }}">Lire la suite &nbsp;<i class="fa fa-angle-right"></i> </a>
 			              		</div>
 
-			              	</div><!-- /.col-sm-4 -->
+			              	</div><!-- /.col-md-4 -->
 
-			              	<div class="col-sm-4">
+			              	<div class="col-md-4">
 			              		<div class="service">
 				              		<div class="service-thumb-home">
 				              			<a href="#"><img src="img/ste/metal.jpg" alt=""></a>
@@ -113,9 +113,9 @@
 				              		<h3>Menuiserie &amp; Métallique</h3>
 				              		<p>Pour fabriquer fenêtres, portes, vérandas de style, ensembles vitrés nous utilisons des profilés métalliques
                                        tubulaires en source "froide" ou à rupture de pont thermique suivant le cas </p>
-				              		<a class="readmore" href="#">Lire la suite &nbsp;<i class="fa fa-angle-right"></i> </a>
+				              		<a class="readmore" href="{{ path('metalliquePage') }}">Lire la suite &nbsp;<i class="fa fa-angle-right"></i> </a>
 			              	   </div>
-			              	</div><!-- /.col-sm-4 -->
+			              	</div><!-- /.col-md-4 -->
 			              </div> <!-- /.row -->
 			            </div><!-- /.container -->
 			        </section>
@@ -125,9 +125,9 @@
 			        <section class="feature-section section-padding">
 				        <div class="container">
 				        	<div class="row">
-				        		<div class="col-sm-7 col-xs-12">
+				        		<div class="col-md-7 col-xs-12">
 				        			<h2>Qui sommes nous ?</h2>
-				        			<p class="" style="font-size: 20px;">
+				        			<p class="" style="font-size: 18px;">
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="h3  font-weight-bold">Socéité AIT IKEN SARL</span> 
                                         est située au N°112 quartier industriel Ouarzazate MAROC, spécialisée dans l’industrie de la menuiserie
                                          avec toutes ses branches à savoir : le BOIS, l’ALIMINIUM et le METAL <br>
@@ -136,15 +136,15 @@
                                         que répondre aux exigences retenues par le marché.
                                     </p> 
 									
-                                    <p>
+                                    <p style="font-size: 18px;">
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Notre équipe de professionnels vous accompagne tout au long de votre 
                                         projet personnel, en vous apportant 
                                         conseils techniques et professionnels pour une bonne qualité de travail.
                                     </p>
 
-									<a href="#" class="btn btn-success">Lire la suite</a>
+									<a href="{{ path('presentationPage') }}" class="btn btn-primary">Lire la suite</a>
 				        		</div>
-								<div class="col-sm-5 ">
+								<div class="col-md-5 ">
 								<br> <br><br>
 									<img class="" src="{{asset('img/aluuuu.png')}}"
 								</div>
@@ -160,7 +160,7 @@
 			              <div class="row text-center">
 			                <div class="col-xs-12">
 			                  <h2 class="section-title">Toutes Les Activités de La Société</h2>
-			                  <span class="section-sub">Monotonectally innovate cross-media<br> resources without seamless</span>
+			                  <span class="section-sub">Bois  & Aluminium & Métallique </span>
 			                </div>
 			              </div> <!-- /.row -->
 
@@ -304,8 +304,8 @@
 			              </div><!-- /.row -->
 
 			              <hr>
-
-			              <div class="partner-section">
+						
+			              <div class="partner-section ">
 				              <div class="row row-content">
 				              	<div class="col-md-12">
 									<div class="owl-carousel partner-carousel">
@@ -333,16 +333,11 @@
 									    <div class="item">
 									    	<a  href="#"><img class="img-fluid" height="80px" src="img/partner/h.jpg" alt=""></a>
 									    </div>
-									    
 									</div>
-
-
 							        <div class="partner-carousel-navigation">
 							            <a class="prev"><i class="fa fa-angle-left"></i></a>
 							            <a class="next"><i class="fa fa-angle-right"></i></a>
 							        </div><!-- /.partner-carousel-navigation -->
-
-
 				              	</div><!-- /.col-md-12 -->
 				              </div><!-- /.row -->
 			              </div><!-- /.partner-section -->
@@ -354,19 +349,19 @@
 			        <section class="counter-section" data-stellar-background-ratio="0.5">
 			        	<div class="container">
 							<div class="row">
-						        <div class="col-sm-4 col-xs-12">
+						        <div class="col-md-4 col-xs-12">
 						          <div class="counter-block">
-						          	<span class="count-description flaticon-logistics"><strong class="timer">799</strong>bois</span>
+						          	<span class="count-description -"><strong class="timer">799</strong>bois</span>
 						          </div>
 						        </div> 
-						       <div class="col-sm-4 col-xs-12">
+						       <div class="col-md-4 col-xs-12">
 						          <div class="counter-block">
-						          	<span class="count-description flaticon-international"><strong class="timer">19</strong>Aluminium</span>
+						          	<span class="count-description -"><strong class="timer">19</strong>Aluminium</span>
 						          </div>
 						        </div> 
-						       <div class="col-sm-4 col-xs-12">
+						       <div class="col-md-4 col-xs-12">
 						          <div class="counter-block">
-						          	<span class="count-description flaticon-compass"><strong class="timer">521</strong>Métallique</span>
+						          	<span class="count-description -"><strong class="timer">521</strong>Métallique</span>
 						          </div>
 						        </div> 
 					      	</div> <!-- /.row -->
@@ -377,73 +372,7 @@
 			        <!-- cta start -->
 			        <section class="cta-section">
 			        	<div class="container text-center">
-			        		<a data-toggle="modal" data-target="#quoteModal" href="#" class="btn btn-primary quote-btn">Contactez nous</a>
-
-							<!-- Modal -->
-							<div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true">
-							  <div class="modal-dialog modal-lg">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h3 class="modal-title" id="quoteModalLabel">Request a rate for the shipping of your goods.</h3>
-							      </div>
-							      <div class="modal-body">
-									<form id="contactForm" action="sendemail.php" method="POST">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-												    <label for="name">Name</label>
-												    <input id="name" name="name" type="text" class="form-control"  required="" placeholder="">
-												</div>
-											</div>
-											<div class="col-md-6">
-											  <div class="form-group">
-											    <label for="company">Company Name</label>
-											    <input id="company" name="company" type="text" class="form-control" placeholder="">
-											  </div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-											  <div class="form-group">
-											    <label for="phone">Phone Number</label>
-											    <input id="phone" name="phone" type="text" class="form-control" placeholder="">
-											  </div>
-											</div>
-											<div class="col-md-6">
-											  <div class="form-group">
-											    <label for="email">Email address</label>
-											    <input id="email" name="email" type="email" class="form-control" required="" placeholder="">
-											  </div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-md-6">
-											  <div class="form-group">
-											    <label for="city">City Name</label>
-											    <input id="city" name="city" type="text" class="form-control" placeholder="">
-											  </div>
-											</div>
-											<div class="col-md-6">
-											  <div class="form-group">
-											    <label for="subject">Subject</label>
-											    <input id="subject" name="subject" type="text" class="form-control" required="" placeholder="">
-											  </div>
-											</div>
-										</div>
-										<div class="form-group text-area">
-											<label for="message">Your Message</label>
-											<textarea id="message" name="message" class="form-control" rows="6" required="" placeholder=""></textarea>
-										</div>
-
-										<button type="submit" class="btn btn-primary">Send Message</button>
-									</form>
-							      </div>
-							    </div>
-							  </div>
-							</div>
-
+			        		<a  href="{{ path('contactPage') }}" class="btn btn-primary quote-btn">Contactez nous</a>
 			        	</div><!-- /.container -->
 			        </section><!-- /.cta-section -->
 

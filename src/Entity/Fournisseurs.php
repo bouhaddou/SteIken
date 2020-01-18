@@ -94,7 +94,7 @@ class Fournisseurs
         return $this->Adresse;
     }
 
-    public function setAdresse(?string $Adresse): self
+    public function setAdresse(?string $Adresse)
     {
         $this->Adresse = $Adresse;
     }
@@ -103,7 +103,7 @@ class Fournisseurs
         return $this->telephone;
     }
 
-    public function setTelephone(string $telephone): self
+    public function setTelephone(string $telephone)
     {
         $this->telephone = $telephone;
     }
