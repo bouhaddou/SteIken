@@ -27,7 +27,7 @@
                 <td>{{ Regelement.libelle }}</td>
                 <td>{{ Regelement.fournisseur.NomComplet }}</td>
                 <td>{{ Regelement.banque }}</td>
-                <td>{{ Regelement.credit }}</td>
+                <td>{{ Regelement.credit|number_format(2, '.', ',') }}</td>
                 <td>{{ Regelement.Mode.modeReg }}</td>
                 <td>{{ Regelement.observation }}</td>
                 <td>

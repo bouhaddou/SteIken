@@ -6,7 +6,7 @@
 <div class="container">
     <h6 class="mt-4 mb-5">Situation de Fournisseur </h6>
 
-    <table class="table table-hover small"  border="1px">
+    <table class=" table table-bordered small"  >
         <thead>
             <tr class="text-center">
                 <th>Id</th>
@@ -37,8 +37,8 @@
                      {{ achatReg.Mode.modeReg   }}
                       {% endif %}
                       </td>
-                <td>{{ achatReg.debit }}</td>
-                <td>{{ achatReg.credit }}</td>
+                <td class="text-center">{{ achatReg.debit|number_format(2, '.', ',') }}</td>
+                <td class="text-center">{{ achatReg.credit|number_format(2, '.', ',') }}</td>
                 <td>{{ achatReg.observation }}</td>
                 <td>
                     {# <a href="{{ path('achatReg_show', {'id': achatReg.id}) }}">show</a> #}
@@ -49,7 +49,7 @@
             {% set debit = debit + achatReg.debit  %}
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3"> no records found </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -58,29 +58,27 @@
 <div class="row">
     <div class="col-md-7"></div>
     <div class="col-md-5">
-      <table border="2px solid" class="table table-bordred small">
-            <tr >
-              
-                <th >Total</th>
-                <td>{{ debit }}</td>
-                <td>{{ credit }}</td>
+      <table  class="table table-bordered small">
+            <tr>
+                <th class="text-center">Total</th>
+                <td class="text-center">{{ debit|number_format(2, '.', ',') }}</td>
+                <td class="text-center">{{ credit|number_format(2, '.', ',') }}</td>
             </tr>
             <tr>
                 <th colspan="2" class="text-center" >Solde</th>
-                <td>285285</td>
+                <td class="text-center">{{ (debit - credit)|number_format(2, '.', ',') }}</td>
             </tr>
             <tr>
                 <th colspan="2" class="text-center" >IMPAYES</th>
-                <td>00.00</td>
+                <td class="text-center">00.00</td>
             </tr>
             <tr>
                 <th colspan="2" class="text-center" >SOLDE A PAYER</th>
-                <td>{{ debit - credit }}</td>
+                <td class="text-center">{{ (debit - credit)|number_format(2, '.', ',') }}</td>
             </tr>
     </table>
     </div>
 </div>
-  
     {# <a href="{{ path('Regelements_new') }}">Create new</a> #}
 </div>
 

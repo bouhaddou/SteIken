@@ -1,0 +1,16 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Inscription!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mb-5">
+		<h4 class="mt-4 mb-3 text-center">Inscrivez vous </h4>
+	{{  form_start(form) }}
+	{{  form_widget(form) }}
+		<button class="btn btn-primary" type="submit" ><i class="fas fa-plus"></i>  Inscription</button>
+		{{  form_end(form) }}
+	</div>
+ {# {% include "partials/footer.html.twig" %}  #}
+{% endblock %}

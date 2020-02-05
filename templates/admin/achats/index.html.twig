@@ -24,7 +24,7 @@
                 <td>{{ Achat.designation }}</td>
                 <td>{{ Achat.libelle }}</td>
                 <td>{{ Achat.fournisseur.NomComplet }}</td>
-                <td>{{ Achat.debit }}</td>
+                <td>{{ Achat.debit|number_format(2, '.', ',') }}</td>
                 <td>{{ Achat.observation }}</td>
                 <td>
                     <a href="{{ path('Achats_show', {'id': Achat.id}) }}">show</a>
