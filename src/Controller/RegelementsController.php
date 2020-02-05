@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 
-use App\Form\AchatType;
 use App\Entity\AchatReg;
 use App\Form\RegelementsType;
 use App\Repository\TypesRepository;

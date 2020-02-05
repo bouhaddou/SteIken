@@ -1,0 +1,49 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Regelements index{% endblock %}
+
+{% block body %}
+    <h1>Regelements index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pieces</th>
+                <th>libelle</th>
+                <th>fournisseur</th>
+                <th>Banque</th>
+                <th>Mode</th>
+                <th>debit</th>
+                <th>Credit</th>
+                <th>observation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for achatReg in achatRegs %}
+            <tr>
+                <td>{{ achatRegs.id }}</td>
+                <td>{{ achatRegs.designation }}</td>
+                <td>{{ achatRegs.libelle }}</td>
+                <td>{{ achatRegs.fournisseur.NomComplet }}</td>
+                <td>{{ achatRegs.banque }}</td>
+                <td>{{ achatRegs.Mode.modeReg }}</td>
+                <td>{{ achatRegs.debit }}</td>
+                <td>{{ achatRegs.credit }}</td>
+                <td>{{ achatRegs.observation }}</td>
+                <td>
+                    {# <a href="{{ path('achatRegs_show', {'id': achatRegs.id}) }}">show</a> #}
+                    {# <a href="{{ path('achatRegs_edit', {'id': Regelement.id}) }}">edit</a> #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('Regelements_new') }}">Create new</a>
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\AchatReg;
+use App\Entity\Fournisseurs;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -19,22 +20,17 @@ class AchatRegRepository extends ServiceEntityRepository
         parent::__construct($registry, AchatReg::class);
     }
 
-    // /**
-    //  * @return AchatReg[] Returns an array of AchatReg objects
-    //  */
-    /*
-    public function findByExampleField($value)
+  
+    public function findByAchatReg(Fournisseurs $frs)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('a.fournisseur = :val')
+            ->setParameter('val', $frs)
             ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?AchatReg
