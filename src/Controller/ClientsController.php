@@ -83,6 +83,18 @@ class ClientsController extends AbstractController
            'clients' => $clients
         ]);
     }
+    //---------------------------------------------------------------------Show Clients
+    /**
+     * @Route("/clients/{id}/delete", name="clientsDeletePage")
+     */
+    public function DeleteClient(Request $request,ClientsRepository  $repo , $id)
+    {
+        $result = $repo->findOneById($id);
+        $em= $this->getDoctrine()->getManager();
+        $em->remove($result);
+        $em->flush();
+        return $this->redirectToRoute('clientsPage');
+    }
     //---------------------------------------------------------------------Ajouter Decomptes
     /**
      * @Route("/decompte/{id}/new", name="DecompteNewPage")
