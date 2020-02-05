@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Achats;
+use App\Entity\AchatReg;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Achats|null find($id, $lockMode = null, $lockVersion = null)
- * @method Achats|null findOneBy(array $criteria, array $orderBy = null)
- * @method Achats[]    findAll()
- * @method Achats[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AchatReg|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AchatReg|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AchatReg[]    findAll()
+ * @method AchatReg[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AchatsRepository extends ServiceEntityRepository
+class AchatRegRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Achats::class);
+        parent::__construct($registry, AchatReg::class);
     }
 
     // /**
-    //  * @return Achats[] Returns an array of Achats objects
+    //  * @return AchatReg[] Returns an array of AchatReg objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class AchatsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Achats
+    public function findOneBySomeField($value): ?AchatReg
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')

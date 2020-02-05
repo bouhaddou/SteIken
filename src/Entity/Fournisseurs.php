@@ -41,21 +41,15 @@ class Fournisseurs
     private $telephone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Achats", mappedBy="Fournisseur")
+     * @ORM\OneToMany(targetEntity="App\Entity\AchatReg", mappedBy="fournisseur")
      */
-    private $achats;
+    private $achatRegs;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Regelement", mappedBy="Fournissuer")
-     */
-    private $regelements;
 
     
     public function __construct()
     {
-        $this->achats = new ArrayCollection();
-        $this->regelements = new ArrayCollection();
-
+        $this->achatRegs = new ArrayCollection();
     }
 
 
@@ -107,70 +101,38 @@ class Fournisseurs
     {
         $this->telephone = $telephone;
     }
+
     /**
-     * @return Collection|Achats[]
+     * @return Collection|AchatReg[]
      */
-    public function getAchats(): Collection
+    public function getAchatRegs(): Collection
     {
-        return $this->achats;
+        return $this->achatRegs;
     }
 
-    public function addAchat(Achats $achat): self
+    public function addAchatReg(AchatReg $achatReg): self
     {
-        if (!$this->achats->contains($achat)) {
-            $this->achats[] = $achat;
-            $achat->setFournisseur($this);
-            $achat->setDesignation($this);
+        if (!$this->achatRegs->contains($achatReg)) {
+            $this->achatRegs[] = $achatReg;
+            $achatReg->setFournisseur($this);
         }
 
         return $this;
     }
 
-    public function removeAchat(Achats $achat): self
+    public function removeAchatReg(AchatReg $achatReg): self
     {
-        if ($this->achats->contains($achat)) 
-        {
-            $this->achats->removeElement($achat);
+        if ($this->achatRegs->contains($achatReg)) {
+            $this->achatRegs->removeElement($achatReg);
             // set the owning side to null (unless already changed)
-            if ($achat->getFournisseur() === $this) {
-                $achat->setFournisseur(null);
+            if ($achatReg->getFournisseur() === $this) {
+                $achatReg->setFournisseur(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|Regelement[]
-     */
-    public function getRegelements(): Collection
-    {
-        return $this->regelements;
-    }
 
-    public function addRegelement(Regelement $regelement): self
-    {
-        if (!$this->regelements->contains($regelement)) {
-            $this->regelements[] = $regelement;
-            $regelement->setFournissuer($this);
-        }
 
-        return $this;
-    }
-
-    public function removeRegelement(Regelement $regelement): self
-    {
-        if ($this->regelements->contains($regelement)) {
-            $this->regelements->removeElement($regelement);
-            // set the owning side to null (unless already changed)
-            if ($regelement->getFournissuer() === $this) {
-                $regelement->setFournissuer(null);
-            if ($achat->getDesignation() === $this) {
-                $achat->setDesignation(null);
-            }
-        }
-
-        return $this;
-    }
-}
 }

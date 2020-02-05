@@ -2,24 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\ModeRegelement;
+use App\Entity\Mode;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ModeRegelementType extends AbstractType
+class ModeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
+            ->add('modeReg')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ModeRegelement::class,
+            'data_class' => Mode::class,
         ]);
     }
 }

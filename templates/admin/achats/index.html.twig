@@ -1,44 +1,43 @@
-{% extends 'Admin/base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Achats index{% endblock %}
 
 {% block body %}
-<div class="container mt-5">  
-    <h1 class="text-info text-center mb-3">Liste des Achats</h1>
+    <h1>Achats index</h1>
 
-    <table class="table table-hover">
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Libelle</th>
-                <th>Fournisseur</th>
-                <th>Date</th>
-                <th>Montant</th>
-                <th>Valide</th>
+                <th>Pieces</th>
+                <th>libelle</th>
+                <th>fournisseur</th>
+                <th>debit</th>
+                <th>observation</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for achat in achats %}
+        {% for Achat in Achats %}
             <tr>
-                <td>{{ achat.id }}</td>
-                <td>{{ achat.libelle }}</td>
-                <td>{{ achat.Fournisseur.NomComplet }}</td>
-                <td>{{ achat.Date }}</td>
-                <td>{{ achat.Montant }}</td>
-                <td>{{ achat.valide ? 'Yes' : 'No' }}</td>
+                <td>{{ Achat.id }}</td>
+                <td>{{ Achat.designation }}</td>
+                <td>{{ Achat.libelle }}</td>
+                <td>{{ Achat.fournisseur.NomComplet }}</td>
+                <td>{{ Achat.debit }}</td>
+                <td>{{ Achat.observation }}</td>
                 <td>
-                    <a href="{{ path('achats_show', {'id': achat.id}) }}">show</a>
-                    <a href="{{ path('achats_edit', {'id': achat.id}) }}">edit</a>
+                    <a href="{{ path('Achats_show', {'id': Achat.id}) }}">show</a>
+                    <a href="{{ path('Achats_edit', {'id': Achat.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('achats_new') }}">Ajouter une Achat</a>
+    <a href="{{ path('Achats_new') }}">Create new</a>
 {% endblock %}

@@ -2,29 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Regelement;
+use App\Entity\AchatReg;
 use App\Entity\Fournisseurs;
-use App\Entity\ModeRegelement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RegelementType extends AbstractType
+class AchatType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('designation')
             ->add('libelle')
-            ->add('montantRegelement')
-            ->add('Fournissuer', EntityType::class, [
+            ->add('debit')
+            ->add('observation')
+            ->add('fournisseur', EntityType::class, [
                 'class' => Fournisseurs::class,
                 'choice_label' => 'NomComplet',
-            ])
-            ->add('date')
-            ->add('modeRegelement', EntityType::class, [
-                'class' => ModeRegelement::class,
-                'choice_label' => 'libelle',
             ])
         ;
     }
@@ -32,7 +28,7 @@ class RegelementType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Regelement::class,
+            'data_class' => AchatReg::class,
         ]);
     }
 }

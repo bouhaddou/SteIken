@@ -27,7 +27,7 @@
                 <td>{{ fournisseur.telephone }}</td>
                 <td>
                     <a class="mr-2" href="{{ path('fournisseurs_show', {'id': fournisseur.id}) }}"><i class="fas fa-eye"></i></a>
-                    <a href="{{ path('situation_frs', {'id': fournisseur.id}) }}"><i class="fas fa-eye text-success"></i></a>
+                    {# <a href="{{ path('situation_frs', {'id': fournisseur.id}) }}"><i class="fas fa-eye text-success"></i></a> #}
                 </td>
             </tr>
         {% else %}

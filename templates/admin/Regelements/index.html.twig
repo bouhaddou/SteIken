@@ -1,0 +1,45 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Regelements index{% endblock %}
+
+{% block body %}
+    <h1>Regelements index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pieces</th>
+                <th>libelle</th>
+                <th>fournisseur</th>
+                <th>Banque</th>
+                <th>Credit</th>
+                <th>observation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for Regelement in Regelements %}
+            <tr>
+                <td>{{ Regelement.id }}</td>
+                <td>{{ Regelement.designation }}</td>
+                <td>{{ Regelement.libelle }}</td>
+                <td>{{ Regelement.fournisseur.NomComplet }}</td>
+                <td>{{ Regelement.banque }}</td>
+                <td>{{ Regelement.credit }}</td>
+                <td>{{ Regelement.Mode.modeReg }}</td>
+                <td>
+                    <a href="{{ path('Regelements_show', {'id': Regelement.id}) }}">show</a>
+                    <a href="{{ path('Regelements_edit', {'id': Regelement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('Regelements_new') }}">Create new</a>
+{% endblock %}

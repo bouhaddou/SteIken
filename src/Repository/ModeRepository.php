@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\ModeRegelement;
+use App\Entity\Mode;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method ModeRegelement|null find($id, $lockMode = null, $lockVersion = null)
- * @method ModeRegelement|null findOneBy(array $criteria, array $orderBy = null)
- * @method ModeRegelement[]    findAll()
- * @method ModeRegelement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Mode|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Mode|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Mode[]    findAll()
+ * @method Mode[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ModeRegelementRepository extends ServiceEntityRepository
+class ModeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ModeRegelement::class);
+        parent::__construct($registry, Mode::class);
     }
 
     // /**
-    //  * @return ModeRegelement[] Returns an array of ModeRegelement objects
+    //  * @return Mode[] Returns an array of Mode objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ModeRegelementRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ModeRegelement
+    public function findOneBySomeField($value): ?Mode
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

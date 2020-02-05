@@ -1,9 +1,9 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}AChats{% endblock %}
+{% block title %}Regelements{% endblock %}
 
 {% block body %}
-    <h1>Achats</h1>
+    <h1>Regelements</h1>
 
     <table class="table">
         <tbody>
@@ -20,12 +20,20 @@
                   <td>{{ Achat.libelle }}</td>
             </tr>
             <tr>
-                <th>designation</th>
+                <th>fournisseur</th>
                  <td>{{ Achat.fournisseur.NomComplet }}</td>
             </tr>
             <tr>
-                <th>debit</th>
-                  <td>{{ Achat.debit }}</td>
+                <th>Banque</th>
+                  <td>{{ Achat.banque }}</td>
+            </tr>
+             <tr>
+                <th>Mode</th>
+                  <td>{{ Achat.Mode.modeReg }}</td>
+            </tr>
+             <tr>
+                <th>credit</th>
+                  <td>{{ Achat.credit }}</td>
             </tr>
             <tr>
                 <th>observation</th>
@@ -34,9 +42,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('Achats_index') }}">back to list</a>
+    <a href="{{ path('Regelements_index') }}">back to list</a>
 
-    <a href="{{ path('Achats_edit', {'id': Achat.id}) }}">edit</a>
+    {# <a href="{{ path('Regelements_edit', {'id': Achat.id}) }}">edit</a> #}
 
-    {{ include('admin/Achats/_delete_form.html.twig') }}
+    {# {{ include('admin/Regelements/_delete_form.html.twig') }} #}
 {% endblock %}

@@ -1,15 +1,13 @@
-{% extends 'Admin/base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Edit Achats{% endblock %}
 
 {% block body %}
-<div class="container mt-4"> 
-    <h1 class="text-info text-center mb-3">Modification d'une Achats</h1>
+    <h1>Edit Achats</h1>
 
-    {{ include('Admin/achats/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('admin/Achats/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a class="btn btn-primary" href="{{ path('achats_index') }}">Retour</a>
+    <a href="{{ path('Achats_index') }}">back to list</a>
 
-    {{ include('Admin/achats/_delete_form.html.twig') }}
-</div>
+    {{ include('admin/Achats/_delete_form.html.twig') }}
 {% endblock %}
