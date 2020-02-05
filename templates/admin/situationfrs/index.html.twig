@@ -3,11 +3,12 @@
 {% block title %}Regelements index{% endblock %}
 
 {% block body %}
-    <h1>Regelements index</h1>
+<div class="container">
+    <h6 class="mt-4 mb-5">Situation de Fournisseur </h6>
 
-    <table class="table">
+    <table class="table table-hover small"  border="1px">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>Id</th>
                 <th>Pieces</th>
                 <th>libelle</th>
@@ -21,22 +22,31 @@
             </tr>
         </thead>
         <tbody>
+        {% set credit = 0 %}
+        {% set debit = 0 %}
         {% for achatReg in achatRegs %}
             <tr>
-                <td>{{ achatRegs.id }}</td>
-                <td>{{ achatRegs.designation }}</td>
-                <td>{{ achatRegs.libelle }}</td>
-                <td>{{ achatRegs.fournisseur.NomComplet }}</td>
-                <td>{{ achatRegs.banque }}</td>
-                <td>{{ achatRegs.Mode.modeReg }}</td>
-                <td>{{ achatRegs.debit }}</td>
-                <td>{{ achatRegs.credit }}</td>
-                <td>{{ achatRegs.observation }}</td>
+                <td>{{ achatReg.id }}</td>
+                <td>{{ achatReg.designation }}</td>
+                <td>{{ achatReg.libelle }}</td>
+                <td>{{ achatReg.fournisseur.NomComplet }}</td>
+                <td>{{ achatReg.banque }}</td>
+                <td> {% if achatReg.Mode is empty %}
+                        null
+                     {% else %}
+                     {{ achatReg.Mode.modeReg   }}
+                      {% endif %}
+                      </td>
+                <td>{{ achatReg.debit }}</td>
+                <td>{{ achatReg.credit }}</td>
+                <td>{{ achatReg.observation }}</td>
                 <td>
-                    {# <a href="{{ path('achatRegs_show', {'id': achatRegs.id}) }}">show</a> #}
-                    {# <a href="{{ path('achatRegs_edit', {'id': Regelement.id}) }}">edit</a> #}
+                    {# <a href="{{ path('achatReg_show', {'id': achatReg.id}) }}">show</a> #}
+                    {# <a href="{{ path('achatReg_edit', {'id': Regelement.id}) }}">edit</a> #}
                 </td>
             </tr>
+            {% set credit = credit + achatReg.credit %}
+            {% set debit = debit + achatReg.debit  %}
         {% else %}
             <tr>
                 <td colspan="3">no records found</td>
@@ -44,6 +54,34 @@
         {% endfor %}
         </tbody>
     </table>
+<hr class="w-100">
+<div class="row">
+    <div class="col-md-7"></div>
+    <div class="col-md-5">
+      <table border="2px solid" class="table table-bordred small">
+            <tr >
+              
+                <th >Total</th>
+                <td>{{ debit }}</td>
+                <td>{{ credit }}</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >Solde</th>
+                <td>285285</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >IMPAYES</th>
+                <td>00.00</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >SOLDE A PAYER</th>
+                <td>{{ debit - credit }}</td>
+            </tr>
+    </table>
+    </div>
+</div>
+  
+    {# <a href="{{ path('Regelements_new') }}">Create new</a> #}
+</div>
 
-    <a href="{{ path('Regelements_new') }}">Create new</a>
 {% endblock %}

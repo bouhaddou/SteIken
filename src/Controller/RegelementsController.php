@@ -23,7 +23,7 @@ class RegelementsController extends AbstractController
     public function index(AchatRegRepository $AchatRegRepository,TypesRepository $typeCa): Response
     {
         return $this->render('admin/Regelements/index.html.twig', [
-            'Regelements' => $AchatRegRepository->findAll(),
+            'Regelements' => $AchatRegRepository->findBy(['type' => 'Regelements']),
             'typee' => $typeCa->findAll(),
         ]);
     }
@@ -39,7 +39,7 @@ class RegelementsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-         
+            $achat->setType('Regelements');
             $entityManager->persist($achat);
             $entityManager->flush();
 

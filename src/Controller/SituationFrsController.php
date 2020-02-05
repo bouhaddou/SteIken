@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\AchatReg;
 use App\Entity\Fournisseurs;
 use App\Repository\AchatRegRepository;
 use App\Repository\FournisseursRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
     /**
      * @Route("/admin/situation")
      */
 class SituationFrsController extends AbstractController
 {
+   
     /**
      * @Route("/{id}", name="situation_frs")
      */
@@ -21,7 +23,18 @@ class SituationFrsController extends AbstractController
         $frs = $repofrs->findOneBy(['id' => $id]);
         $result = $achatReg->findByAchatReg($frs);
         return $this->render('admin/situationfrs/index.html.twig', [
-            'achatRegs' => $result
+            'achatRegs' => $result,
+        ]);
+    }
+
+    /**
+     * @Route("/All/FRS", name="situation_frsAll")
+     */
+    public function AllAchat(AchatRegRepository $achatReg)
+    {
+       
+        return $this->render('admin/situationfrs/index.html.twig', [
+            'achatRegs' => $achatReg->findAll(),
         ]);
     }
 }

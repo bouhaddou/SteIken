@@ -23,7 +23,7 @@ class AchatsController extends AbstractController
     public function index(AchatRegRepository $AchatRegRepository,TypesRepository $typeCa): Response
     {
         return $this->render('admin/Achats/index.html.twig', [
-            'Achats' => $AchatRegRepository->findAll(),
+            'Achats' => $AchatRegRepository->findBy(['type' => 'Achats']),
             'typee' => $typeCa->findAll(),
         ]);
     }
@@ -39,7 +39,7 @@ class AchatsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-         
+            $achat->setType('Achats');
             $entityManager->persist($achat);
             $entityManager->flush();
 

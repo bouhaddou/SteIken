@@ -56,6 +56,19 @@ class AchatReg
      */
     private $Mode;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+
+    public function sommeCredit()
+    {
+        return $sum = array_reduce($this->toArray(), function ($total, $credit) {
+            return $total + $this->getCredit();
+        }, 0);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,7 +91,7 @@ class AchatReg
         return $this->libelle;
     }
 
-    public function setLibelle(?string $libelle): self
+    public function setLibelle(?string $libelle)
     {
         $this->libelle = $libelle;
 
@@ -153,6 +166,18 @@ class AchatReg
     public function setMode(?Mode $Mode): self
     {
         $this->Mode = $Mode;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

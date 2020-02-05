@@ -14,7 +14,8 @@
                 <th>fournisseur</th>
                 <th>Banque</th>
                 <th>Credit</th>
-                <th>observation</th>
+                <th>Mode</th>
+                <th>Observation</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{ Regelement.banque }}</td>
                 <td>{{ Regelement.credit }}</td>
                 <td>{{ Regelement.Mode.modeReg }}</td>
+                <td>{{ Regelement.observation }}</td>
                 <td>
                     <a href="{{ path('Regelements_show', {'id': Regelement.id}) }}">show</a>
                     <a href="{{ path('Regelements_edit', {'id': Regelement.id}) }}">edit</a>
