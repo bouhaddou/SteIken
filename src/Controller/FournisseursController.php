@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/fournisseurs")
+ * @Route("/admin/fournisseurs")
  */
 class FournisseursController extends AbstractController
 {
@@ -20,7 +20,7 @@ class FournisseursController extends AbstractController
      */
     public function index(FournisseursRepository $fournisseursRepository): Response
     {
-        return $this->render('Admin/fournisseurs/index.html.twig', [
+        return $this->render('admin/fournisseurs/index.html.twig', [
             'fournisseurs' => $fournisseursRepository->findAll(),
         ]);
     }
@@ -42,18 +42,18 @@ class FournisseursController extends AbstractController
             return $this->redirectToRoute('fournisseurs_index');
         }
 
-        return $this->render('Admin/fournisseurs/new.html.twig', [
+        return $this->render('admin/fournisseurs/new.html.twig', [
             'fournisseur' => $fournisseur,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="fournisseurs_show", methods={"GET"})
+     * @Route("/{id}/show", name="fournisseurs_show", methods={"GET"})
      */
     public function show(Fournisseurs $fournisseur): Response
     {
-        return $this->render('Admin/fournisseurs/show.html.twig', [
+        return $this->render('admin/fournisseurs/show.html.twig', [
             'fournisseur' => $fournisseur,
         ]);
     }
@@ -72,7 +72,7 @@ class FournisseursController extends AbstractController
             return $this->redirectToRoute('fournisseurs_index');
         }
 
-        return $this->render('Admin/fournisseurs/edit.html.twig', [
+        return $this->render('admin/fournisseurs/edit.html.twig', [
             'fournisseur' => $fournisseur,
             'form' => $form->createView(),
         ]);

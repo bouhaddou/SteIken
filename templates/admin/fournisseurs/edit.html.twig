@@ -1,4 +1,4 @@
-{% extends 'Admin/base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Edit Fournisseurs{% endblock %}
 
@@ -6,10 +6,10 @@
 <div class="container mt-4">
     <h4 class="text-info text-center mb-3">Edit Fournisseurs</h4>
 
-    {{ include('Admin/fournisseurs/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('admin/fournisseurs/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     <a class="btn btn-success mt-3" href="{{ path('fournisseurs_index') }}">Retour</a>
 
-    {{ include('Admin/fournisseurs/_delete_form.html.twig') }}
+    {{ include('admin/fournisseurs/_delete_form.html.twig') }}
 </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'Admin/base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Fournisseurs{% endblock %}
 
@@ -38,7 +38,7 @@
         <a class=" mt-3" href="{{ path('fournisseurs_edit', {'id': fournisseur.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
      </div>
      <div class="col">
-     {{ include('Admin/fournisseurs/_delete_form.html.twig') }}
+     {{ include('admin/fournisseurs/_delete_form.html.twig') }}
      </div>
     </div>
 

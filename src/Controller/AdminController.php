@@ -6,10 +6,13 @@ use App\Repository\TypesRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+    /**
+     * @Route("/admin")
+     */
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="adminPage")
+     * @Route("/", name="adminPage")
      */
     public function index(TypesRepository $typeCa)
     {

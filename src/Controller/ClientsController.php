@@ -17,6 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+    /**
+     * @Route("/admin")
+     */
 class ClientsController extends AbstractController
 {
     /**
@@ -25,7 +28,7 @@ class ClientsController extends AbstractController
     public function index(ClientsRepository $client)
     {
         $clients = $client->findAll();
-        return $this->render('Admin/clients/index.html.twig', [
+        return $this->render('admin/clients/index.html.twig', [
            'clients' => $clients
         ]);
     }
@@ -47,7 +50,7 @@ class ClientsController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('clientsPage');
         }
-        return $this->render('Admin/clients/AdClients.html.twig', [
+        return $this->render('admin/clients/AdClients.html.twig', [
            'form' => $form->createView(),
         ]);
     }
@@ -67,7 +70,7 @@ class ClientsController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('clientsPage');
         }
-        return $this->render('Admin/clients/EditClient.html.twig', [
+        return $this->render('admin/clients/EditClient.html.twig', [
            'form' => $form->createView(),
         ]);
     }
@@ -79,7 +82,7 @@ class ClientsController extends AbstractController
     public function ShowClient(ClientsRepository $client,$id)
     {
         $clients = $client->findOneBy(['id' => $id]);
-        return $this->render('Admin/clients/Show.html.twig', [
+        return $this->render('admin/clients/Show.html.twig', [
            'clients' => $clients
         ]);
     }
@@ -114,7 +117,7 @@ class ClientsController extends AbstractController
            
            return $this->redirectToRoute('clientsShowPage',['id' => $clients->getId()]);
         }
-        return $this->render('Admin/clients/AdDecompte.html.twig', [
+        return $this->render('admin/clients/AdDecompte.html.twig', [
            'clients' => $clients,
            'form' => $form->createView()
         ]);
@@ -136,7 +139,7 @@ class ClientsController extends AbstractController
            
            return $this->redirectToRoute('clientsShowPage',['id' => $decompte->getClient()->getId()]);
         }
-        return $this->render('Admin/clients/EditDecompte.html.twig', [
+        return $this->render('admin/clients/EditDecompte.html.twig', [
            'form' => $form->createView()
         ]);
     }
@@ -157,7 +160,7 @@ class ClientsController extends AbstractController
            
            return $this->redirectToRoute('clientsShowPage',['id' => $avenant->getClient()->getId()]);
         }
-        return $this->render('Admin/clients/EditAvenant.html.twig', [
+        return $this->render('admin/clients/EditAvenant.html.twig', [
            'form' => $form->createView()
         ]);
     }
@@ -181,7 +184,7 @@ class ClientsController extends AbstractController
            
            return $this->redirectToRoute('clientsShowPage',['id' => $clients->getId()]);
         }
-        return $this->render('Admin/clients/AdDecompte.html.twig', [
+        return $this->render('admin/clients/AdDecompte.html.twig', [
            'clients' => $clients,
            'form' => $form->createView()
         ]);
