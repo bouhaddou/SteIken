@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\ClientsPar;
 use App\Entity\ClientsVentes;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method ClientsVentes|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,20 @@ class ClientsVentesRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ClientsVentes::class);
+    }
+
+
+
+
+    public function findByventes(ClientsPar $frs)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.clients = :val')
+            ->setParameter('val', $frs)
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

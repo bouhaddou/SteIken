@@ -50,10 +50,6 @@ class ClientsPar
      */
     private $clientsVentes;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ClientsVentes", mappedBy="clientsPar")
-     */
-    private $clientsVents;
 
     public function __construct()
     {

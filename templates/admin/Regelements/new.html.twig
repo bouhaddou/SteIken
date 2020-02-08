@@ -1,11 +1,13 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}New Regelement{% endblock %}
+{% block title %}Nouveau Régelement{% endblock %}
 
 {% block body %}
-    <h1>Create new Regelement</h1>
+<div class="container mb-4">
+    <h1 class="text-center mt-5 mb-5">Nouveau Régelement</h1>
 
     {{ include('admin/Regelements/_form.html.twig') }}
 
-    <a href="{{ path('Regelements_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('Regelements_index') }}">Retour</a>
+</div>
 {% endblock %}

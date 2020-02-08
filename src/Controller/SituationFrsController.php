@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\AchatReg;
+use App\Entity\ClientsPar;
 use App\Entity\Fournisseurs;
+use App\Entity\ClientsVentes;
 use App\Repository\AchatRegRepository;
+use App\Repository\ClientsParRepository;
 use App\Repository\FournisseursRepository;
+use App\Repository\ClientsVentesRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -31,6 +35,29 @@ class SituationFrsController extends AbstractController
      * @Route("/All/FRS", name="situation_frsAll")
      */
     public function AllAchat(AchatRegRepository $achatReg)
+    {
+       
+        return $this->render('admin/situationfrs/index.html.twig', [
+            'achatRegs' => $achatReg->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/cli", name="situation_clt")
+     */
+    public function indexcli(ClientsVentesRepository $achatReg,$id,ClientsParRepository $repofrs)
+    {
+        $frs = $repofrs->findOneBy(['id' => $id]);
+        $result = $achatReg->findByventes($frs);
+        return $this->render('admin/situationfrs/index.html.twig', [
+            'achatRegs' => $result,
+        ]);
+    }
+
+    /**
+     * @Route("/All/CLTS", name="situation_cltAll")
+     */
+    public function AllVente(ClientsVentesRepository $achatReg)
     {
        
         return $this->render('admin/situationfrs/index.html.twig', [
