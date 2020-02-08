@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Edit ClientsPar{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3 mb-3">Modification de  client</h1>
+
+    {{ include('admin/clientsPar/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a class="text-primary mt-3 btn btn-primary" href="{{ path('clientsPar_index') }}">Retour</a>
+
+    {{ include('admin/clientsPar/_delete_form.html.twig') }}
+</div>
+{% endblock %}

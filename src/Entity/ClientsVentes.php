@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PrePersist;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AchatRegRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ClientsVentesRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class AchatReg
+class ClientsVentes
 {
     /**
      * @ORM\Id()
@@ -31,12 +31,12 @@ class AchatReg
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $debit;
+    private $credit;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseurs", inversedBy="achatRegs")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ClientsPar", inversedBy="clientsVentes")
      */
-    private $fournisseur;
+    private $clients;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -46,7 +46,7 @@ class AchatReg
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $credit;
+    private $debit;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -54,7 +54,7 @@ class AchatReg
     private $banque;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Mode", inversedBy="achatRegs")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Mode", inversedBy="clientsVentes")
      */
     private $Mode;
 
@@ -67,7 +67,7 @@ class AchatReg
      * @ORM\Column(type="datetime")
      */
     private $date;
-   
+
     /**
      * @ORM\PrePersist
      */
@@ -77,9 +77,6 @@ class AchatReg
             $this->date = new \DateTime();
         }
     }
-
-   
-
     public function getId(): ?int
     {
         return $this->id;
@@ -102,33 +99,33 @@ class AchatReg
         return $this->libelle;
     }
 
-    public function setLibelle(?string $libelle)
+    public function setLibelle(?string $libelle): self
     {
         $this->libelle = $libelle;
 
         return $this;
     }
 
-    public function getDebit(): ?float
+    public function getCredit(): ?float
     {
-        return $this->debit;
+        return $this->credit;
     }
 
-    public function setDebit(?float $debit): self
+    public function setCredit(float $credit): self
     {
-        $this->debit = $debit;
+        $this->credit = $credit;
 
         return $this;
     }
 
-    public function getFournisseur(): ?Fournisseurs
+    public function getClients(): ?ClientsPar
     {
-        return $this->fournisseur;
+        return $this->clients;
     }
 
-    public function setFournisseur(?Fournisseurs $fournisseur): self
+    public function setClients(?ClientsPar $clients): self
     {
-        $this->fournisseur = $fournisseur;
+        $this->clients = $clients;
 
         return $this;
     }
@@ -145,14 +142,14 @@ class AchatReg
         return $this;
     }
 
-    public function getCredit(): ?float
+    public function getDebit(): ?float
     {
-        return $this->credit;
+        return $this->debit;
     }
 
-    public function setCredit(?float $credit): self
+    public function setDebit(float $debit): self
     {
-        $this->credit = $credit;
+        $this->debit = $debit;
 
         return $this;
     }
@@ -204,4 +201,6 @@ class AchatReg
 
         return $this;
     }
+
+
 }

@@ -1,0 +1,44 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}AChats{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3 mb-3">Vents</h1>
+
+    <table class="table ">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ Vente.id }}</td>
+            </tr>
+            <tr>
+                <th>designation</th>
+                  <td>{{ Vente.designation }}</td>
+            </tr>
+            <tr>
+                <th>libelle</th>
+                  <td>{{ Vente.libelle }}</td>
+            </tr>
+            <tr>
+                <th>designation</th>
+                 <td>{{ Vente.clients.NomComplet }}</td>
+            </tr>
+            <tr>
+                <th>debit</th>
+                  <td>{{ Vente.debit }}</td>
+            </tr>
+            <tr>
+                <th>observation</th>
+                 <td>{{ Vente.observation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('Vents_index') }}">back to list</a>
+
+    <a href="{{ path('Vents_edit', {'id': Vente.id}) }}">edit</a>
+
+    {{ include('admin/Vents/_delete_form.html.twig') }}
+</div>
+{% endblock %}

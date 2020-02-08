@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}vents{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3 mb-3">Ajouter un vente</h1>
+
+    {{ include('admin/Vents/_form.html.twig') }}
+
+    <a class="btn btn-primary mt-3" href="{{ path('Vents_index') }}">Retour</a>
+</div>
+{% endblock %}

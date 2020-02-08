@@ -28,9 +28,15 @@ class Mode
      */
     private $achatRegs;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ClientsVentes", mappedBy="Mode")
+     */
+    private $clientsVentes;
+
     public function __construct()
     {
         $this->achatRegs = new ArrayCollection();
+        $this->clientsVentes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,37 @@ class Mode
             // set the owning side to null (unless already changed)
             if ($achatReg->getMode() === $this) {
                 $achatReg->setMode(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ClientsVentes[]
+     */
+    public function getClientsVentes(): Collection
+    {
+        return $this->clientsVentes;
+    }
+
+    public function addClientsVente(ClientsVentes $clientsVente): self
+    {
+        if (!$this->clientsVentes->contains($clientsVente)) {
+            $this->clientsVentes[] = $clientsVente;
+            $clientsVente->setMode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClientsVente(ClientsVentes $clientsVente): self
+    {
+        if ($this->clientsVentes->contains($clientsVente)) {
+            $this->clientsVentes->removeElement($clientsVente);
+            // set the owning side to null (unless already changed)
+            if ($clientsVente->getMode() === $this) {
+                $clientsVente->setMode(null);
             }
         }
 

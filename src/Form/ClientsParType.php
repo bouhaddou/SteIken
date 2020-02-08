@@ -2,13 +2,13 @@
 
 namespace App\Form;
 
-use App\Entity\Fournisseurs;
+use App\Entity\ClientsPar;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class FournisseursType extends AbstractType
+class ClientsParType extends AbstractType
 {
     public function getConfigue($label,$placeholder,$valuer)
     {
@@ -35,7 +35,7 @@ class FournisseursType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Fournisseurs::class,
+            'data_class' => ClientsPar::class,
         ]);
     }
 }

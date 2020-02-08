@@ -29,31 +29,40 @@
                     <tr>
                         <th class="text-center">Avenants </th>
                         <th class="">Montant </th>
+                        <th class="">Date </th>
+                        <th class="">Actions </th>
                     </tr>
                 </thead>
                 <tbody> 
                 {%  for avenant in clients.avenants %}
                     <tr>
-                        <td class="text-center m-0 p-0 mt-1">Avenant  N° :{{avenant.Libelle}}</td>
-                        <td class=" m-0 p-0 mt-1">{{ avenant.MontantAvenant|number_format(2, '.', ',')}} dh
-                          <a href="{{path('AvenantEditPage',{'id': avenant.id }) }}"> <span class=" float-right m-0 p-0  mr-5 btn "><i class="fas fa-edit text-success"></i></span>
+                        <td class="text-center ">Avenant  N° :{{avenant.Libelle}}</td>
+                        <td class=" ">{{ avenant.MontantAvenant|number_format(2, '.', ',')}} dh</td>
+                        <td>
+                         {{ avenant.date|date("d-m-Y") }}
+                        </td>
+                        <td>
+                          <a href="{{path('AvenantEditPage',{'id': avenant.id }) }}"> <span class="  "><i class="fas fa-edit text-success"></i></span>
                         </a>
-                         <a href="{{ path('deleteAvenantPage',{'id': avenant.id }) }}"><span class="float-right mt-1  mr-3  "><i class="fas fa-trash-alt text-danger "></i> </span>
+                         <a href="{{ path('deleteAvenantPage',{'id': avenant.id }) }}"><span class=" "><i class="fas fa-trash-alt text-danger "></i> </span>
                         </a>
                         </td>
                     </tr> 
                 {% endfor %}
-                    <tr class="bg-secondary text-light">
-                      <th>Total des Avenants  :</th>
-                      <th>{{ clients.getTotalAvenant|number_format(2, '.', ',')}}</th>
+                    <tr >
+                      <th colspan="1" ></th>
+                      <th colspan="2"class="bg-secondary text-light text-center" >Total des Avenants  :</th>
+                      <th class="">{{ clients.getTotalAvenant|number_format(2, '.', ',')}} dh</th>
                     </tr>
                     <tr>
+                        <td colspan="2"></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr class="border bg-success text-light mt-3">
-                      <th class="">Montant Total des Travaux  :</th>
-                      <th  class="">{{  (clients.RevesionPrix  + clients.MontantTravaux + clients.getTotalAvenant )|number_format(2, '.', ',')}}</th>
+                    <tr >
+                        <td colspan="1"></td>
+                      <th colspan="2" class="border bg-success text-light mt-3 text-center">Montant Total des Travaux  :</th>
+                      <th  class="">{{  (clients.RevesionPrix  + clients.MontantTravaux + clients.getTotalAvenant )|number_format(2, '.', ',')}} dh</th>
                     </tr>
                 </tbody>
             </table>
@@ -67,23 +76,33 @@
                     <tr>
                         <th class="text-center">Décomptes </th>
                         <th >Montant </th>
+                        <th >Date </th>
+                        <th >Actions </th>
                     </tr>
                 </thead>
                 <tbody> 
                 {%  for decompte in clients.decomptes %}
                     <tr class="client">
-                        <td class="m-0 p-0 mt-1 text-center">Décompte N° :{{decompte.Libelle}}</td>
-                        <td class="m-0 p-0 mt-1">{{ decompte.MontantDecompte|number_format(2, '.', ',')}} dh
-                        
-                         <a href="{{ path('DecompteEditPage',{'id':decompte.id}) }}" <span class="float-right m-0 p-0 mt-1 mr-5 btn "><i class="fas fa-edit text-success"></i></span>
+                        <td class="text-center">Décompte N° :{{decompte.Libelle}}</td>
+                        <td class="">{{ decompte.MontantDecompte|number_format(2, '.', ',')}} dh</td>
+                        <td>
+                         {{ decompte.date|date("d-m-Y") }}
+                         </td>
+                         <td>
+                         <a href="{{ path('DecompteEditPage',{'id':decompte.id}) }}" 
+                             <span class="">
+                             <i class="fas fa-edit text-success"></i></span>
                          </a>
-                          <a href="{{ path('deleteDecomptePage',{'id': decompte.id }) }}"><span class="float-right mt-1  mr-3  "><i class="fas fa-trash-alt text-danger "></i> </span>
+                          <a href="{{ path('deleteDecomptePage',{'id': decompte.id }) }}"><span class="   ">
+                          <i class="fas fa-trash-alt text-danger "></i> </span>
                         </a>
                         </td>
+                       
                     </tr> 
                 {% endfor %}
-                    <tr class="bg-secondary text-light">
-                      <th>Total des Décomptes :</th>
+                    <tr class="">
+                      <th></th>
+                      <th class="bg-secondary text-center text-light" colspan="2">Total des Décomptes :</th>
                       <th>{{ clients.getTotalDecomptes|number_format(2, '.', ',')}} dh</th>
                     </tr>
                 </tbody>

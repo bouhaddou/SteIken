@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\Common\Collections\Collection;
@@ -90,6 +91,11 @@ class Clients
     private $objet;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
      * @ORM\PrePersist
      */
     public function prePersist()
@@ -100,6 +106,10 @@ class Clients
         if(empty($this->retenueGrantie)){ $this->retenueGrantie = 0 ; }
         if(empty($this->retenueFinition)){ $this->retenueFinition = 0 ; }
         if(empty($this->Prorata)){ $this->Prorata = 0 ; }
+        if(empty($this->date))
+        {
+            $this->date = new \DateTime();
+        }
       
     }
     public function getTotalDecomptes()
@@ -334,6 +344,18 @@ class Clients
     public function setObjet(?string $objet): self
     {
         $this->objet = $objet;
+
+        return $this;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setDate( $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

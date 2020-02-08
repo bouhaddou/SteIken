@@ -6,6 +6,7 @@ use App\Entity\Clients;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -35,7 +36,9 @@ class EditClientsType extends AbstractType
         ->add('RevesionPrix',MoneyType::class,$this->getConfigue('Révision des Prix','Tapez la Révision Des Prix',false))
         ->add('penalite',MoneyType::class,$this->getConfigue('Pénalité','Tapez la penalite  de Marché',false))
         ->add('Prorata',MoneyType::class,$this->getConfigue('Prorata','Tapez la Prorata  de Marché',false))
-    ;
+        ->add('date',DateType::class,$this->getConfigue('Date de Création :','Tapez la Prorata  de Marché',false))
+        
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

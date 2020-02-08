@@ -2,13 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Fournisseurs;
+use App\Entity\ClientsPar;
+use App\Entity\ClientsVentes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class FournisseursType extends AbstractType
+class VenteType extends AbstractType
 {
     public function getConfigue($label,$placeholder,$valuer)
     {
@@ -23,19 +25,22 @@ class FournisseursType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('NomComplet')
-            ->add('Email')
-            ->add('Adresse')
-            ->add('telephone')
-            ->add('date',DateType::class,$this->getConfigue('Date de Création :','Tapez la Prorata  de Marché',false))
-
-        ;
+        ->add('designation')
+        ->add('libelle')
+        ->add('debit')
+        ->add('observation')
+        ->add('clientsPar', EntityType::class, [
+            'class' => ClientsPar::class,
+            'choice_label' => 'NomComplet',
+        ])
+        ->add('date',DateType::class,$this->getConfigue('Date de Création :','Tapez la Prorata  de Marché',false))
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Fournisseurs::class,
+            'data_class' => ClientsVentes::class,
         ]);
     }
 }

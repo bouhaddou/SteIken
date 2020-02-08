@@ -6,6 +6,7 @@ use App\Entity\Avenant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
@@ -26,7 +27,9 @@ class EditAvenantType extends AbstractType
         $builder
             ->add('Libelle',TextType::class,$this->getConfigue('Avenant N°',"Tapez Le Numero de L'Avenant",true))
             ->add('MontantAvenant',MoneyType::class,$this->getConfigue("Montant de L'Avenant :","Tapez le Montant de L'Avenant",true))
-        ;
+            ->add('date',DateType::class,$this->getConfigue('Date de Création :','Tapez la Prorata  de Marché',false))
+
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

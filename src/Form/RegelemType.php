@@ -3,15 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Mode;
-use App\Entity\AchatReg;
-use App\Entity\Fournisseurs;
+use App\Entity\ClientsPar;
+use App\Entity\ClientsVentes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class RegelementsType extends AbstractType
+class RegelemType extends AbstractType
 {
     public function getConfigue($label,$placeholder,$valuer)
     {
@@ -28,11 +28,13 @@ class RegelementsType extends AbstractType
         $builder
             ->add('designation')
             ->add('libelle')
-            ->add('observation')
             ->add('credit')
+            ->add('observation')
             ->add('banque')
-            ->add('fournisseur', EntityType::class, [
-                'class' => Fournisseurs::class,
+            ->add('clients')
+
+            ->add('clients', EntityType::class, [
+                'class' => ClientsPar::class,
                 'choice_label' => 'NomComplet',
             ])
             ->add('Mode',EntityType::class, [
@@ -47,7 +49,7 @@ class RegelementsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => AchatReg::class,
+            'data_class' => ClientsVentes::class,
         ]);
     }
 }

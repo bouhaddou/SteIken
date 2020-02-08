@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FournisseursRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Fournisseurs
 {
@@ -45,8 +46,20 @@ class Fournisseurs
      */
     private $achatRegs;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
 
-    
+    /**
+     * @ORM\PrePersist
+     */
+    public function PrePersist(){
+        if(empty($this->date))
+        {
+            $this->date = new \DateTime();
+        }
+    }
     public function __construct()
     {
         $this->achatRegs = new ArrayCollection();
@@ -129,6 +142,18 @@ class Fournisseurs
                 $achatReg->setFournisseur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setDate( $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

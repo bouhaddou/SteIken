@@ -46,6 +46,7 @@ class ClientsController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $type = $request->get('typeClient');
             $Client->setTypeClient($type);
+            
             $manager->persist($Client);
             $manager->flush();
             return $this->redirectToRoute('clientsPage');
@@ -184,7 +185,7 @@ class ClientsController extends AbstractController
            
            return $this->redirectToRoute('clientsShowPage',['id' => $clients->getId()]);
         }
-        return $this->render('admin/clients/AdDecompte.html.twig', [
+        return $this->render('admin/clients/AdAvenant.html.twig', [
            'clients' => $clients,
            'form' => $form->createView()
         ]);

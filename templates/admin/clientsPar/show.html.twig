@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}ClientsPar{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3 mb-3">ClientsPar</h1>
+
+    <table class="table ">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ clientsPar.id }}</td>
+            </tr>
+            <tr>
+                <th>NomComplet</th>
+                <td>{{ clientsPar.NomComplet }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ clientsPar.Email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ clientsPar.Adresse }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ clientsPar.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ clientsPar.date ? clientsPar.date|date('d-m-Y') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary mt-3" class="text-center" href="{{ path('clientsPar_index') }}">Retour</a>
+
+    <a class=" btn btn-success mt-3" href="{{ path('clientsPar_edit', {'id': clientsPar.id}) }}">Modifier</a>
+
+    {{ include('admin/clientsPar/_delete_form.html.twig') }}
+{% endblock %}

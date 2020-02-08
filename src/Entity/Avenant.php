@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AvenantRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * 
  */
 class Avenant
 {
@@ -31,6 +34,24 @@ class Avenant
      * @ORM\JoinColumn(nullable=false)
      */
     private $Client;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+   
+        if(empty($this->date))
+        {
+            $this->date = new \DateTime();
+        }
+      
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +90,18 @@ class Avenant
     public function setClient(?Clients $Client): self
     {
         $this->Client = $Client;
+
+        return $this;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setDate( $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

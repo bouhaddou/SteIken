@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Vents index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3 mb-3">Gestion des ventes</h1>
+    <a class=" btn btn-success mb-3" href="{{ path('Vents_new') }}">Create new</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pieces</th>
+                <th>libelle</th>
+                <th>fournisseur</th>
+                <th>debit</th>
+                <th>observation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for Vent in Vents %}
+            <tr>
+                <td>{{ Vent.designation }}</td>
+                <td>{{ Vent.libelle }}</td>
+                <td>{{ Vent.clients.NomComplet }}</td>
+                <td>{{ Vent.debit|number_format(2, '.', ',') }}</td>
+                <td>{{ Vent.observation }}</td>
+                <td>
+                    <a href="{{ path('Vents_show', {'id': Vent.id}) }}"><i class="fas fa-eye "></i></a>
+                    <a href="{{ path('Vents_edit', {'id': Vent.id}) }}"><i class="fas fa-edit text-success "></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+{% endblock %}
