@@ -35,6 +35,19 @@ class ClientsVentesRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findVenteByClients(ClientsPar $frs,$type)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.clients = :val')
+            ->andWhere('a.type = :va')
+            ->setParameter('val', $frs)
+            ->setParameter('va',$type)
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return ClientsVentes[] Returns an array of ClientsVentes objects
     //  */

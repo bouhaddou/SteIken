@@ -4,9 +4,15 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="mt-3 mb-3 text-center">Clients particulières </h1>
-    <a class="btn btn-success mb-2" href="{{ path('clientsPar_new') }}">créer un  client</a>
-    <table class="table table-hover small">
+    <h1 class="mt-3 mb-3 text-center">Clients particulièrs </h1>
+  
+    <div class="" style="position: absolute;">
+         <a class="btn btn-success mb-2" href="{{ path('clientsPar_new') }}">créer un  client</a>
+    </div>
+    <div class="d-flex justify-content-end">
+        <a class="btn  btn-primary  " href=" {{ path('clientsPage')}} " ><i class="fas fa-undo "></i> Retour</a>
+    </div>
+    <table class="table table-hover small mt-2">
         <thead>
             <tr class="text-center">
                 <th>NomComplet</th>
@@ -14,6 +20,7 @@
                 <th>Adresse</th>
                 <th>Telephone</th>
                 <th>Date</th>
+                <th>jk</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -30,6 +37,7 @@
                     <a href="{{ path('clientsPar_edit', {'id': clientsPar.id}) }}"><i class="fas fa-edit text-success"></i></a>
                      <a href="{{ path('situation_clt', {'id': clientsPar.id}) }}"><i class="fas fa-eye text-success"></i></a>
                 </td>
+                <td>{{ clientsPar.getSoldeClient }}</td>
             </tr>
         {% else %}
             <tr>

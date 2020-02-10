@@ -8,6 +8,6 @@
 
     {{ include('admin/Vents/_form.html.twig') }}
 
-    <a class="btn btn-primary mt-3" href="{{ path('Vents_index') }}">Retour</a>
+    <a class="btn btn-primary mt-3" href="{{ path('Vents_index',{'id' : client}) }}">Retour</a>
 </div>
 {% endblock %}

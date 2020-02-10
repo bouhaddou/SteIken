@@ -50,12 +50,23 @@ class ClientsPar
      */
     private $clientsVentes;
 
-
-    public function __construct()
+    /**
+     * Recupérer le total de debit
+     * @return float
+     */
+    public function getSoldeClient()
     {
-        $this->clientsVentes = new ArrayCollection();
-        $this->clientsVents = new ArrayCollection();
+        $sumDebit = array_reduce($this->clientsVentes->toArray(),function($total,$vente){
+            return $total + $vente->getDebit();
+        },0);
+
+        $sumCredit = array_reduce($this->clientsVentes->toArray(),function($total,$vente){
+            return $total + $vente->getCredit();
+        },0);
+
+      return $sumDebit - $sumCredit;
     }
+
     /**
      * @ORM\PrePersist
      */
@@ -66,6 +77,10 @@ class ClientsPar
         }
     }
 
+    public function __construct()
+    {
+        $this->clientsVentes = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -162,34 +177,4 @@ class ClientsPar
         return $this;
     }
 
-    /**
-     * @return Collection|ClientsVentes[]
-     */
-    public function getClientsVents(): Collection
-    {
-        return $this->clientsVents;
-    }
-
-    public function addClientsVent(ClientsVentes $clientsVent): self
-    {
-        if (!$this->clientsVents->contains($clientsVent)) {
-            $this->clientsVents[] = $clientsVent;
-            $clientsVent->setClientsPar($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClientsVent(ClientsVentes $clientsVent): self
-    {
-        if ($this->clientsVents->contains($clientsVent)) {
-            $this->clientsVents->removeElement($clientsVent);
-            // set the owning side to null (unless already changed)
-            if ($clientsVent->getClientsPar() === $this) {
-                $clientsVent->setClientsPar(null);
-            }
-        }
-
-        return $this;
-    }
 }

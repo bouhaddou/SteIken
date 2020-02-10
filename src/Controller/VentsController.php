@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Form\VenteType;
 use App\Entity\ClientsVentes;
+use App\Repository\ClientsParRepository;
 use App\Repository\TypesRepository;
 use App\Repository\ClientsVentesRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,34 +19,41 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class VentsController extends AbstractController
 {
     /**
-     * @Route("/", name="Vents_index", methods={"GET"})
+     * @Route("/{id}/as", name="Vents_index", methods={"GET"})
      */
-    public function index(ClientsVentesRepository $ClientsVentesRepository,TypesRepository $typeCa): Response
+    public function index(ClientsVentesRepository $ClientsVentesRepository,$id,TypesRepository $typeCa,ClientsParRepository $repo): Response
     {
+
+        $client = $repo->findOneBy(['id' => $id]);
         return $this->render('admin/Vents/index.html.twig', [
-            'Vents' => $ClientsVentesRepository->findBy(['type' => 'Vents']),
+            'Vents' => $ClientsVentesRepository->findVenteByClients($client,'Vents'),
             'typee' => $typeCa->findAll(),
+            'client' => $id,
         ]);
     }
 
     /**
-     * @Route("/new", name="Vents_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="Vents_new", methods={"GET","POST"})
      */
-    public function new(Request $request,TypesRepository $typeCa): Response
+    public function new(Request $request,TypesRepository $typeCa,$id,ClientsParRepository $repo): Response
     {
         $Vente = new ClientsVentes();
         $form = $this->createForm(VenteType::class, $Vente);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $client = $repo->findOneBy(['id' => $id]);
             $entityManager = $this->getDoctrine()->getManager();
-            $Vente->setType('Vents');
+            $Vente->setType('Vents')
+                    ->setClients($client);
             $entityManager->persist($Vente);
             $entityManager->flush();
-            return $this->redirectToRoute('Vents_index');
+            return $this->redirectToRoute('Vents_index',['id' => $id]);
         }
         return $this->render('admin/Vents/new.html.twig', [
             'typee' => $typeCa->findAll(),
             'form' => $form->createView(),
+            'client' => $id
         ]);
     }
 
@@ -57,7 +65,6 @@ class VentsController extends AbstractController
         return $this->render('admin/Vents/show.html.twig', [
             'Vente' => $Vents,
             'typee' => $typeCa->findAll(),
-            'Vente' => $Vents,
         ]);
     }
 
@@ -68,12 +75,10 @@ class VentsController extends AbstractController
     {
         $form = $this->createForm(VenteType::class, $Vents);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('Vents_index');
+            return $this->redirectToRoute('Vents_index',['id' => $Vents->getClients()->getId()]);
         }
-
         return $this->render('admin/Vents/edit.html.twig', [
             'Vente' => $Vents,
             'typee' => $typeCa->findAll(),
@@ -82,16 +87,16 @@ class VentsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="Vents_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="Vents_delete", methods={"DELETE"})
      */
     public function delete(Request $request, ClientsVentes $Vents): Response
     {
         if ($this->isCsrfTokenValid('delete'.$Vents->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->remove($Vents);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('Vents_index');
+        return $this->redirectToRoute('Vents_index',['id' => $Vents->getClients()->getId()]);
     }
 }

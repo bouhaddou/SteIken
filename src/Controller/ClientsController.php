@@ -13,6 +13,7 @@ use App\Form\EditDecomptesType;
 use App\Repository\AvenantRepository;
 use App\Repository\ClientsRepository;
 use App\Repository\DecomptesRepository;
+use App\Repository\ClientsParRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,11 +26,12 @@ class ClientsController extends AbstractController
     /**
      * @Route("/clients", name="clientsPage")
      */
-    public function index(ClientsRepository $client)
+    public function index(ClientsRepository $client,ClientsParRepository $clientsParRepository)
     {
         $clients = $client->findAll();
         return $this->render('admin/clients/index.html.twig', [
-           'clients' => $clients
+           'clients' => $clients,
+           'clientsPars' => $clientsParRepository->findAll(),
         ]);
     }
     // --------------------------------------------------------------------Ajouter Clients

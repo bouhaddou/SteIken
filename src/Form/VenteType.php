@@ -29,10 +29,6 @@ class VenteType extends AbstractType
         ->add('libelle')
         ->add('debit')
         ->add('observation')
-        ->add('clients', EntityType::class, [
-            'class' => ClientsPar::class,
-            'choice_label' => 'NomComplet',
-        ])
         ->add('date',DateType::class,$this->getConfigue('Date de Création :','Tapez la Prorata  de Marché',false))
     ;
     }

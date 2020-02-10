@@ -3,48 +3,50 @@
 {% block title %}Regelements{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Regelements</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ Achat.id }}</td>
+                <td>{{ Regelement.id }}</td>
             </tr>
             <tr>
                 <th>designation</th>
-                  <td>{{ Achat.designation }}</td>
+                  <td>{{ Regelement.designation }}</td>
             </tr>
             <tr>
                 <th>libelle</th>
-                  <td>{{ Achat.libelle }}</td>
+                  <td>{{ Regelement.libelle }}</td>
             </tr>
             <tr>
                 <th>fournisseur</th>
-                 <td>{{ Achat.fournisseur.NomComplet }}</td>
+                 <td>{{ Regelement.clients.NomComplet }}</td>
             </tr>
             <tr>
                 <th>Banque</th>
-                  <td>{{ Achat.banque }}</td>
+                  <td>{{ Regelement.banque }}</td>
             </tr>
              <tr>
                 <th>Mode</th>
-                  <td>{{ Achat.Mode.modeReg }}</td>
+                  <td>{{ Regelement.Mode.modeReg }}</td>
             </tr>
              <tr>
                 <th>credit</th>
-                  <td>{{ Achat.credit|number_format(2, '.', ',') }}</td>
+                  <td>{{ Regelement.credit|number_format(2, '.', ',') }}</td>
             </tr>
             <tr>
                 <th>observation</th>
-                 <td>{{ Achat.observation }}</td>
+                 <td>{{ Regelement.observation }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('Regelements_index') }}">back to list</a>
+    <a class="btn btn-primary mt-3" href="{{ path('Regelement_index',{ 'id' : Regelement.clients.id }) }}">Retour</a>
 
-    {# <a href="{{ path('Regelements_edit', {'id': Achat.id}) }}">edit</a> #}
+    <a class="btn btn-success mt-3" href="{{ path('Regel_edit', {'id': Regelement.id}) }}">Modification</a>
 
-    {# {{ include('admin/Regelements/_delete_form.html.twig') }} #}
+    {{ include('admin/RegelementCli/_delete_form.html.twig') }}
+</div>
 {% endblock %}

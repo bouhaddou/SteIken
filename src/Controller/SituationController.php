@@ -16,11 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     /**
      * @Route("/admin/situation")
      */
-class SituationFrsController extends AbstractController
+class SituationController extends AbstractController
 {
    
     /**
-     * @Route("/{id}", name="situation_frs")
+     * @Route("/{id}/fournisseur", name="situation_frs")
      */
     public function index(AchatRegRepository $achatReg,$id,FournisseursRepository $repofrs)
     {
@@ -32,7 +32,7 @@ class SituationFrsController extends AbstractController
     }
 
     /**
-     * @Route("/All/FRS", name="situation_frsAll")
+     * @Route("/All/fournisseurs", name="situation_frsAll")
      */
     public function AllAchat(AchatRegRepository $achatReg)
     {
@@ -43,25 +43,25 @@ class SituationFrsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/cli", name="situation_clt")
+     * @Route("/{id}/client", name="situation_clt")
      */
     public function indexcli(ClientsVentesRepository $achatReg,$id,ClientsParRepository $repofrs)
     {
         $frs = $repofrs->findOneBy(['id' => $id]);
         $result = $achatReg->findByventes($frs);
-        return $this->render('admin/situationfrs/index.html.twig', [
-            'achatRegs' => $result,
+        return $this->render('admin/situationcli/index.html.twig', [
+            'clients' => $result,
         ]);
     }
 
     /**
-     * @Route("/All/CLTS", name="situation_cltAll")
+     * @Route("/All/clients", name="situation_cltAll")
      */
     public function AllVente(ClientsVentesRepository $achatReg)
     {
        
-        return $this->render('admin/situationfrs/index.html.twig', [
-            'achatRegs' => $achatReg->findAll(),
+        return $this->render('admin/situationcli/index.html.twig', [
+            'clients' => $achatReg->findAll(),
         ]);
     }
 }

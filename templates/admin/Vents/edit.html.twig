@@ -8,7 +8,7 @@
 
     {{ include('admin/Vents/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('Vents_index') }}">Retour</a>
+    <a href="{{ path('Vents_index',{'id': Vente.clients.id}) }}">Retour</a>
 
     {{ include('admin/Vents/_delete_form.html.twig') }}
 </div>

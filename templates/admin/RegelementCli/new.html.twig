@@ -8,6 +8,6 @@
 
     {{ include('admin/RegelementCli/_form.html.twig') }}
 
-    <a href="{{ path('Regelements_index') }}">back to list</a>
+    <a href="{{ path('Regelement_index',{'id' : Regelement.id}) }}">back to list</a>
 </div>
 {% endblock %}
