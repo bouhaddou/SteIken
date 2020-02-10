@@ -23,7 +23,8 @@ class ClientsVentesRepository extends ServiceEntityRepository
 
 
 
-    public function findByventes(ClientsPar $frs)
+    public function findByventes(
+         $frs)
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.clients = :val')

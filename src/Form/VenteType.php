@@ -29,7 +29,7 @@ class VenteType extends AbstractType
         ->add('libelle')
         ->add('debit')
         ->add('observation')
-        ->add('clientsPar', EntityType::class, [
+        ->add('clients', EntityType::class, [
             'class' => ClientsPar::class,
             'choice_label' => 'NomComplet',
         ])
