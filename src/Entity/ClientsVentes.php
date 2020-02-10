@@ -68,6 +68,8 @@ class ClientsVentes
      */
     private $date;
 
+   
+
     /**
      * @ORM\PrePersist
      */

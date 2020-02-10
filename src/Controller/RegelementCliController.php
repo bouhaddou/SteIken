@@ -8,6 +8,7 @@ use App\Form\RegelemType;
 use App\Form\RegelementType;
 use App\Entity\ClientsVentes;
 use App\Repository\TypesRepository;
+use App\Repository\ClientsParRepository;
 use App\Repository\ClientsVentesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,12 +21,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RegelementCliController extends AbstractController
 {
     /**
-     * @Route("/", name="Regelement_index", methods={"GET"})
+     * @Route("/{id}", name="Regelement_index", methods={"GET"})
      */
-    public function index(ClientsVentesRepository $ClientsVentesRepository,TypesRepository $typeCa): Response
+    public function index(ClientsVentesRepository $ClientsVentesRepository,$id,ClientsParRepository $repo,TypesRepository $typeCa): Response
     {
+        $client = $repo->findOneBy(['id' => $id]);
         return $this->render('admin/RegelementCli/index.html.twig', [
-            'Regelement' => $ClientsVentesRepository->findBy(['type' => 'Regelement']),
+            'Regelement' => $ClientsVentesRepository->findVenteByClients($client,'Regelement'),
             'typee' => $typeCa->findAll(),
         ]);
     }
@@ -84,7 +86,7 @@ class RegelementCliController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="Regelement_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="Regelement_delete", methods={"DELETE"})
      */
     public function delete(Request $request, ClientsVentes $Regelement): Response
     {

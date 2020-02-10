@@ -1,0 +1,85 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Regelements index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h6 class="mt-4 mb-5">Situation de Fournisseur </h6>
+
+    <table class=" table table-bordered small"  >
+        <thead>
+            <tr class="text-center">
+                <th>Id</th>
+                <th>Pieces</th>
+                <th>libelle</th>
+                <th>fournisseur</th>
+                <th>Banque</th>
+                <th>Mode</th>
+                <th>debit</th>
+                <th>Credit</th>
+                <th>observation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set credit = 0 %}
+        {% set debit = 0 %}
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.designation }}</td>
+                <td>{{ client.libelle }}</td>
+                <td>{{ client.clients.NomComplet }}</td>
+                <td>{{ client.banque }}</td>
+                <td> {% if client.Mode is empty %}
+                        null
+                     {% else %}
+                     {{ client.Mode.modeReg   }}
+                      {% endif %}
+                      </td>
+                <td class="text-center">{{ client.debit|number_format(2, '.', ',') }}</td>
+                <td class="text-center">{{ client.credit|number_format(2, '.', ',') }}</td>
+                <td>{{ client.observation }}</td>
+                <td>
+                    {# <a href="{{ path('client_show', {'id': client.id}) }}">show</a> #}
+                    {# <a href="{{ path('client_edit', {'id': Regelement.id}) }}">edit</a> #}
+                </td>
+            </tr>
+            {% set credit = credit + client.credit %}
+            {% set debit = debit + client.debit  %}
+        {% else %}
+            <tr>
+                <td colspan="3"> no records found </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<hr class="w-100">
+<div class="row">
+    <div class="col-md-7"></div>
+    <div class="col-md-5">
+      <table  class="table table-bordered small">
+            <tr>
+                <th class="text-center">Total</th>
+                <td class="text-center">{{ debit|number_format(2, '.', ',') }}</td>
+                <td class="text-center">{{ credit|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >Solde</th>
+                <td class="text-center">{{ (debit - credit)|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >IMPAYES</th>
+                <td class="text-center">00.00</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >SOLDE A PAYER</th>
+                <td class="text-center">{{ (debit - credit)|number_format(2, '.', ',') }}</td>
+            </tr>
+    </table>
+    </div>
+</div>
+    {# <a href="{{ path('Regelements_new') }}">Create new</a> #}
+</div>
+
+{% endblock %}

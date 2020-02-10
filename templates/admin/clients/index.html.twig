@@ -3,9 +3,16 @@
 {% block title %}Liste des Clients{% endblock %}
 
 {% block body %}
+{% set somme = 0 %}
 <div class="container mt-2"> <!-- debug div container-->
     <h2 class="alert alert-success text-center" >Liste des Clients</h2>
-    <div class="row mt-5"> <!-- debug diw row-->
+    <div class="row border p-2">
+        <div class="col">
+        <a href="{{ path('clientsNewPage') }}" class="btn btn-success">Ajouter un Marché</a>
+        </div>
+    </div> <h3 class="text-center p-2">Liste des Marchés</h3>
+    <div class="row mt-2"> <!-- debug diw row-->
+       
         <div class="col-md-12">
             <table class="table table-hover small bordered">
                 <thead>
@@ -18,7 +25,7 @@
                          <th class="text-center">décomptes</th>
                          <th class="text-center">R.Garante</th>
                          <th class="text-center">M.Total</th>
-                         <th class="text-center">Reste A Paye</th>
+                         <th class="text-center">Reste à Payer</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -36,18 +43,70 @@
                         </td>
                         <td class="text-center">{{ client.retenueGrantie|number_format(2, '.', ',')}}</td>
                         <td class="text-center">{{ client.CalcMontantTotal|number_format(2, '.', ',') }}</td>
-                        <td class="text-center">{{ client.CalcRestAPaye|number_format(2, '.', ',') }}</td>
+                        <th class="text-center">{{ client.CalcRestAPaye|number_format(2, '.', ',') }} dh</th>
                         <td>
-                            <a href="{{ path('clientsShowPage',{'id': client.id }) }}" class=" btn p-0"><i class="fas fa-eye text-primary"></i></a>
-                            <a href="{{ path('clientsEditPage',{'id': client.id }) }}" class="btn p-0"><i class="fas fa-edit text-success"></i></a>
-                            <a href="{{ path('clientsDeletePage',{'id':client.id}) }}" class="{% if client.CalcRestAPaye <= 0 %} disabled {% endif %} btn p-0"><i class="fas fa-trash-alt text-danger"></i></a>
+                            <a href="{{ path('clientsShowPage',{'id': client.id }) }}" class=" btn pt-0 pb-0 "><i class="fas fa-list "></i></a>
+                            <a href="{{ path('clientsEditPage',{'id': client.id }) }}" class="btn  pt-0 pb-0 "><i class="fas fa-edit "></i></a>
+                            <a href="{{ path('clientsDeletePage',{'id':client.id}) }}" class=" btn  pt-0 pb-0  {% if client.CalcRestAPaye <= 0 %} disabled {% endif %} "><i class="fas fa-trash-alt "></i></a>
                         </td>
                     </tr>
+                    {% set somme = somme + client.CalcRestAPaye %}
                 {% endfor %}
                 </tbody>
                 </table>
         </div>
     </div> <!-- fin div  row-->
+    <h3 class="text-center p-2">Liste des Clients Particuliers</h3>
+        <div class="d-flex justify-content-center" style="position: absolute;">
+            <a class="btn  btn-success  " href=" {{ path('clientsPar_new')}} " ><i class="fas fa-plus "></i>  Ajouter un Client</a>
+        </div>
+        <div class="d-flex justify-content-end">
+             <a class="btn  btn-primary  " href=" {{ path('situation_cltAll')}} " ><i class="fas fa-list "></i>  Situation Clients</a>
+        </div>
+    
+    <div class="row mt-2">
+        <table class="table table-hover small">
+        <thead>
+            <tr class="text-center">
+                <th>NomComplet</th>
+                <th class="text-center">Email</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>M. Total</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for clientsPar in clientsPars %}
+            <tr class="text-center">
+                <td >{{ clientsPar.NomComplet }}</td>
+                <td>{{ clientsPar.Email }}</td>
+                <td>{{ clientsPar.Adresse }}</td>
+                <td>{{ clientsPar.telephone }}</td>
+                <th>{{ clientsPar.getSoldeClient|number_format(2, '.', ',')  }} dh</th>
+                <td>
+                    <a class="btn  pt-0 pb-0 text-primary " href="{{ path('clientsPar_show', {'id': clientsPar.id}) }}"><i class="fas fa-user"></i></a>
+                     <a class="btn  pt-0 pb-0 text-success " href="{{ path('Vents_index', {'id': clientsPar.id}) }}"><i class="fas fa-cart-plus"></i></a>
+                     <a class="btn  pt-0 pb-0 text-info " href="{{ path('Regelement_index', {'id': clientsPar.id}) }}"><i class="fas fa-money-check-alt "></i></a>
+                     <a class="btn  pt-0 pb-0 text-info " href="{{ path('situation_clt', {'id': clientsPar.id}) }}"><i class="fas fa-list "></i></a>
+                </td>
+                
+            </tr>
+            {% set somme = somme + clientsPar.getSoldeClient %}
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+    <div class="row">
+        <div class="col offset-md-8 border p-3">
+        <span class="h3">Rest Total : </span> <span class="text-danger h4"> {{  somme|number_format(2, '.', ',')  }} DH</span>
+        </div>
+    </div>
 </div> <!--fin div container-->
 
 {% endblock %}

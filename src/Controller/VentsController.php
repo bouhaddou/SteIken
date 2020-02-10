@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Form\VenteType;
 use App\Entity\ClientsVentes;
+use App\Repository\ClientsParRepository;
 use App\Repository\TypesRepository;
 use App\Repository\ClientsVentesRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,12 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class VentsController extends AbstractController
 {
     /**
-     * @Route("/", name="Vents_index", methods={"GET"})
+     * @Route("/{id}", name="Vents_index", methods={"GET"})
      */
-    public function index(ClientsVentesRepository $ClientsVentesRepository,TypesRepository $typeCa): Response
+    public function index(ClientsVentesRepository $ClientsVentesRepository,$id,TypesRepository $typeCa,ClientsParRepository $repo): Response
     {
+        $client = $repo->findOneBy(['id' => $id]);
         return $this->render('admin/Vents/index.html.twig', [
-            'Vents' => $ClientsVentesRepository->findBy(['type' => 'Vents']),
+            'Vents' => $ClientsVentesRepository->findVenteByClients($client,'Vents'),
             'typee' => $typeCa->findAll(),
         ]);
     }
@@ -82,7 +84,7 @@ class VentsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="Vents_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="Vents_delete", methods={"DELETE"})
      */
     public function delete(Request $request, ClientsVentes $Vents): Response
     {
