@@ -7,6 +7,7 @@ use App\Form\AchatType;
 use App\Entity\AchatReg;
 use App\Repository\TypesRepository;
 use App\Repository\AchatRegRepository;
+use App\Repository\FournisseursRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,43 +19,45 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AchatsController extends AbstractController
 {
     /**
-     * @Route("/", name="Achats_index", methods={"GET"})
+     * @Route("/{id}/Achat", name="Achats_index", methods={"GET"})
      */
-    public function index(AchatRegRepository $AchatRegRepository,TypesRepository $typeCa): Response
+    public function index(AchatRegRepository $AchatRegRepository,TypesRepository $typeCa,$id,FournisseursRepository $repo): Response
     {
+        $frs = $repo->findOneBy(['id' => $id]);
         return $this->render('admin/Achats/index.html.twig', [
-            'Achats' => $AchatRegRepository->findBy(['type' => 'Achats']),
+            'Achats' => $AchatRegRepository->findVenteByFrs($frs,'Achats'),
             'typee' => $typeCa->findAll(),
+            'frs' => $id
         ]);
     }
 
     /**
-     * @Route("/new", name="Achats_new", methods={"GET","POST"})
+     * @Route("/{id}/new", name="Achats_new", methods={"GET","POST"})
      */
-    public function new(Request $request,TypesRepository $typeCa): Response
+    public function new(Request $request,TypesRepository $typeCa,$id,FournisseursRepository $repo): Response
     {
         $achat = new AchatReg();
         $form = $this->createForm(AchatType::class, $achat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $frs = $repo->findOneBy(['id' => $id]);
             $entityManager = $this->getDoctrine()->getManager();
-            $achat->setType('Achats');
+            $achat->setType('Achats')
+                    ->setFournisseur($frs);
             $entityManager->persist($achat);
             $entityManager->flush();
-
-            return $this->redirectToRoute('Achats_index');
+            return $this->redirectToRoute('Achats_index',['id' => $id]);
         }
-
         return $this->render('admin/Achats/new.html.twig', [
-           
             'typee' => $typeCa->findAll(),
             'form' => $form->createView(),
+            'frs' => $id
         ]);
     }
 
     /**
-     * @Route("/{id}", name="Achats_show", methods={"GET"})
+     * @Route("/{id}/sh", name="Achats_show", methods={"GET"})
      */
     public function show(AchatReg $achats,TypesRepository $typeCa): Response
     {
@@ -72,12 +75,10 @@ class AchatsController extends AbstractController
     {
         $form = $this->createForm(AchatType::class, $achats);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('Achats_index');
+            return $this->redirectToRoute('Achats_index',['id' => $achats->getFournisseur()->getId()]);
         }
-
         return $this->render('admin/Achats/edit.html.twig', [
             'Achat' => $achats,
             'typee' => $typeCa->findAll(),
@@ -96,6 +97,6 @@ class AchatsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('Achats_index');
+        return $this->redirectToRoute('Achats_index',['id' => $achats->getFournisseur()->getId()]);
     }
 }

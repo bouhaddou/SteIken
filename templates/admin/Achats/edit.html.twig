@@ -3,11 +3,13 @@
 {% block title %}Edit Achats{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Edit Achats</h1>
 
     {{ include('admin/Achats/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('Achats_index') }}">back to list</a>
+    <a href="{{ path('Achats_index',{'id': Achat.fournisseur.id }) }}">Retour</a>
 
     {{ include('admin/Achats/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

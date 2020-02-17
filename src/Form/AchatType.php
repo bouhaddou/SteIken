@@ -29,10 +29,6 @@ class AchatType extends AbstractType
             ->add('libelle')
             ->add('debit')
             ->add('observation')
-            ->add('fournisseur', EntityType::class, [
-                'class' => Fournisseurs::class,
-                'choice_label' => 'NomComplet',
-            ])
             ->add('date',DateType::class,$this->getConfigue('Date de Création :','Tapez la Prorata  de Marché',false))
         ;
     }

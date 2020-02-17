@@ -8,6 +8,6 @@
 
     {{ include('admin/Regelements/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('Regelements_index') }}">Retour</a>
+    <a class="btn btn-primary" href="{{ path('Regelements_index',{'id': regle}) }}">Retour</a>
 </div>
 {% endblock %}
