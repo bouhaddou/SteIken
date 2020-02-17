@@ -61,7 +61,6 @@ class AchatsController extends AbstractController
         return $this->render('admin/Achats/show.html.twig', [
             'Achat' => $achats,
             'typee' => $typeCa->findAll(),
-            'Achat' => $achats,
         ]);
     }
 

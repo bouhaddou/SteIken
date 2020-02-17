@@ -4,15 +4,14 @@
 
 {% block body %}
 <div class="container">
-    <h6 class="mt-4 mb-5">Situation de Fournisseur </h6>
+    <h6 class="mt-4 mb-5">Situation de Fournisseur  {{ nom }}</h6>
 
     <table class=" table table-bordered small"  >
         <thead>
             <tr class="text-center">
-                <th>Id</th>
+                <th>DATE ECRITURE</td>
                 <th>Pieces</th>
                 <th>libelle</th>
-                <th>fournisseur</th>
                 <th>Banque</th>
                 <th>Mode</th>
                 <th>debit</th>
@@ -26,10 +25,9 @@
         {% set debit = 0 %}
         {% for achatReg in achatRegs %}
             <tr>
-                <td>{{ achatReg.id }}</td>
+                <td class="text-center">{{ achatReg.date|date('d-m-Y') }}</td>
                 <td>{{ achatReg.designation }}</td>
                 <td>{{ achatReg.libelle }}</td>
-                <td>{{ achatReg.fournisseur.NomComplet }}</td>
                 <td>{{ achatReg.banque }}</td>
                 <td> {% if achatReg.Mode is empty %}
                         null

@@ -28,6 +28,7 @@ class SituationController extends AbstractController
         $result = $achatReg->findByAchatReg($frs);
         return $this->render('admin/situationfrs/index.html.twig', [
             'achatRegs' => $result,
+            'nom' => $frs->getNomComplet()
         ]);
     }
 
