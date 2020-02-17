@@ -3,9 +3,11 @@
 {% block title %}New Achats{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Create new Achats</h1>
 
     {{ include('admin/Achats/_form.html.twig') }}
 
-    <a href="{{ path('Achats_index') }}">back to list</a>
+    <a href="{{ path('Achats_index',{'id': frs}) }}">back to list</a>
+</div>
 {% endblock %}

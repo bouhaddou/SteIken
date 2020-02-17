@@ -7,6 +7,7 @@ use App\Entity\AchatReg;
 use App\Form\RegelementsType;
 use App\Repository\TypesRepository;
 use App\Repository\AchatRegRepository;
+use App\Repository\FournisseursRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,36 +19,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RegelementsController extends AbstractController
 {
     /**
-     * @Route("/", name="Regelements_index", methods={"GET"})
+     * @Route("/{id}/regVente", name="Regelements_index", methods={"GET"})
      */
-    public function index(AchatRegRepository $AchatRegRepository,TypesRepository $typeCa): Response
+    public function index(AchatRegRepository $AchatRegRepository,TypesRepository $typeCa,FournisseursRepository $repo,$id): Response
     {
+        $frs = $repo->findOneBy(['id' => $id]);
         return $this->render('admin/Regelements/index.html.twig', [
-            'Regelements' => $AchatRegRepository->findBy(['type' => 'Regelements']),
+            'Regelements' => $AchatRegRepository->findVenteByFrs($frs,'Regelements'),
             'typee' => $typeCa->findAll(),
+            'regle' => $id
         ]);
     }
 
     /**
-     * @Route("/new", name="Regelements_new", methods={"GET","POST"})
+     * @Route("/{id}/new", name="Regelements_new", methods={"GET","POST"})
      */
-    public function new(Request $request,TypesRepository $typeCa): Response
+    public function new(Request $request,TypesRepository $typeCa,$id,FournisseursRepository $repo): Response
     {
         $achat = new AchatReg();
         $form = $this->createForm(RegelementsType::class, $achat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $frs = $repo->findOneBy(['id' => $id]);
             $entityManager = $this->getDoctrine()->getManager();
-            $achat->setType('Regelements');
+            $achat->setType('Regelements')
+                    ->getFournisseur($frs);
             $entityManager->persist($achat);
             $entityManager->flush();
-
-            return $this->redirectToRoute('Regelements_index');
+            return $this->redirectToRoute('Regelements_index',['id' => $id]);
         }
-
         return $this->render('admin/Regelements/new.html.twig', [
-           
+           'regle' => $id,
             'typee' => $typeCa->findAll(),
             'form' => $form->createView(),
         ]);

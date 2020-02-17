@@ -3,6 +3,7 @@
 {% block title %}Achats index{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Achats index</h1>
 
     <table class="table">
@@ -39,5 +40,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('Achats_new') }}">Create new</a>
+    <a href="{{ path('fournisseurs_index') }}">Retour</a>
+    <a href="{{ path('Achats_new',{'id': frs}) }}">Create new</a>
+</div>
 {% endblock %}

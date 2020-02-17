@@ -31,10 +31,6 @@ class RegelementsType extends AbstractType
             ->add('observation')
             ->add('credit')
             ->add('banque')
-            ->add('fournisseur', EntityType::class, [
-                'class' => Fournisseurs::class,
-                'choice_label' => 'NomComplet',
-            ])
             ->add('Mode',EntityType::class, [
                 'class' => Mode::class,
                 'choice_label' => 'modeReg',

@@ -32,6 +32,18 @@ class AchatRegRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findVenteByFrs(Fournisseurs $frs,$type)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.fournisseur = :val')
+            ->andWhere('a.type = :va')
+            ->setParameter('val', $frs)
+            ->setParameter('va',$type)
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     /*
     public function findOneBySomeField($value): ?AchatReg
     {

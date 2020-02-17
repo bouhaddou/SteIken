@@ -5,11 +5,10 @@
 {% block body %}
 <div class="container mb-5">
     <h1 class="text-center mt-4 mb-4">Regelements index</h1>
-    <a href="{{ path('Regelements_new') }}">Ajouter un régelement</a>
+    <a href="{{ path('Regelements_new',{'id' : regle}) }}">Ajouter un régelement</a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Pieces</th>
                 <th>libelle</th>
                 <th>fournisseur</th>
@@ -23,7 +22,6 @@
         <tbody>
         {% for Regelement in Regelements %}
             <tr>
-                <td>{{ Regelement.id }}</td>
                 <td>{{ Regelement.designation }}</td>
                 <td>{{ Regelement.libelle }}</td>
                 <td>{{ Regelement.fournisseur.NomComplet }}</td>
