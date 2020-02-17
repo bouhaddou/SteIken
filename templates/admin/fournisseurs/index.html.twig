@@ -14,6 +14,7 @@
                 <th>Email</th>
                 <th>Adresse</th>
                 <th>Telephone</th>
+                <th>Solde</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,11 +26,12 @@
                 <td>{{ fournisseur.Email }}</td>
                 <td>{{ fournisseur.Adresse }}</td>
                 <td>{{ fournisseur.telephone }}</td>
+                 <th>{{ fournisseur.getSoldeFrs|number_format(2, '.', ',')  }} dh</th>
                 <td>
                     <a class="btn  pt-0 pb-0 text-primary " href="{{ path('fournisseurs_show', {'id': fournisseur.id}) }}"><i class="fas fa-user"></i></a>
                      <a class="btn  pt-0 pb-0 text-success " href="{{ path('Achats_index', {'id': fournisseur.id}) }}"><i class="fas fa-cart-plus"></i></a>
                      <a class="btn  pt-0 pb-0 text-info " href="{{ path('Regelements_index', {'id': fournisseur.id}) }}"><i class="fas fa-money-check-alt "></i></a>
-                     {# <a class="btn  pt-0 pb-0 text-info " href="{{ path('situation_clt', {'id': clientsPar.id}) }}"><i class="fas fa-list "></i></a> #}
+                     <a class="btn  pt-0 pb-0 text-info " href="{{ path('situation_frs', {'id': fournisseur.id}) }}"><i class="fas fa-list "></i></a>
                 </td>
             </tr>
         {% else %}

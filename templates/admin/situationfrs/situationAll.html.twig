@@ -1,0 +1,118 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}situation {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2  class="text-center mt-5 mb-2">SOCIETE AIT IKEN </h2>
+    <div class="row">
+        <div class="col borderr text-center"><strong>FOURNISSEUR :</strong> ALL</div>
+        <div class="col-md-3 offset-md-5 borderr text-center"><strong>RELEVE AU :</strong> {{ "now"|date("d/m/Y") }}</div>
+        <div class="col-md-12 borderr mt-2 mb-2">        
+            <h4 class="text-center pt-1">Situation des Fournisseurs  </h4>
+        </div>
+        <div class="col-md-12 m-0 p-0 rege"> 
+            {% set total = 0 %}
+{% for fournisseur in frs %}
+    <table class=" table table-bordered small m-0 p-0 "  >
+        <thead>
+            <tr class="text-center">
+                <th>DATE ECRITURE</td>
+                <th>N° PIECE</th>
+                <th>LIBELLE</th>
+                <th>DEBIT</th>
+                <th>CREDIT</th>
+                <th>LETTRAGE</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set credit = 0 %}
+        {% set debit = 0 %}
+      
+         {% for  fourni in fournisseur.achatRegs %}
+            <tr>
+                <td class="text-center">{{ fourni.date|date('d-m-Y') }}</td>
+                <td>{{ fourni.designation }}</td>
+                <td class="text-center"> {% if fourni.Mode is empty %}
+                      
+                     {% else %}
+                     {{ fourni.Mode.modeReg   }}
+                      {% endif %}
+                      </td>
+                <th class="text-center">{% if  fourni.debit > 0 %} {{ fourni.debit|number_format(2, '.', ',') }} {% endif %}</th>
+                <th class="text-center">{% if  fourni.credit > 0 %} {{ fourni.credit|number_format(2, '.', ',') }} {% endif %}</th>
+                <td>{{ fourni.observation }}</td>
+                <td class="text-center">
+                {% if fourni.type == 'Achats' %}
+                    <a class="text-center" href="{{ path('Achats_edit', {'id': fourni.id }) }}"><i class="fas fa-edit text-success"></i></a>
+                {% else %}
+                    <a class="text-center" href="{{ path('Regelements_edit', {'id': fourni.id }) }}"><i class="fas fa-edit text-success"></i></a>
+                {% endif %}
+                </td>
+            </tr>
+            {% set credit = credit + fourni.credit %}
+            {% set debit = debit + fourni.debit  %}
+        {% else %}
+            <tr>
+                <td colspan="3"> Le comptes est soldé </td>
+            </tr>
+        {% endfor %}
+
+      
+        </tbody>
+    </table>  
+<div class="row mt-2">
+    <div class="col-md-4"></div>
+    <div class="col-md-6 rege">
+      <table  class="table table-bordered small">
+            <tr>
+                <th class="text-center">MONTANT TOTAL</th>
+                <td class="text-center" style="width: 150px; min-width: 150px;"><strong>{{ debit|number_format(2, '.', ',') }}</strong></td>
+                <td class="text-center" style="width: 150px; min-width: 150px;"><strong>{{ credit|number_format(2, '.', ',') }}</strong></td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >SOLDE</th>
+                <td class="text-center"><strong>{{ (debit - credit)|number_format(2, '.', ',') }}</strong></td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >IMPAYES</th>
+                <td class="text-center">00.00</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center" >SOLDE A PAYER</th>
+                <td class="text-center"><strong>{{ (debit - credit)|number_format(2, '.', ',') }}</strong></td>
+            </tr>
+            {% set total = total + debit - credit %}
+    </table>
+    </div>
+      <div class="col-md-2"></div>
+</div> 
+    {% endfor %}
+   
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 mt-4 pt-2">
+        <form>
+            <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer la situation" />
+        </form>
+    </div>
+    <div class="col-md-4 offset-md-6 borderr mt-4 pt-2">
+        <h4 class="text-center">Montant Total : <strong> {{ total|number_format(2, '.', ',') }}</strong></h4>
+    </div>
+</div>
+ 
+    {# <a href="{{ path('Regelements_new') }}">Create new</a> #}
+    
+
+</div>
+
+<script type="text/javascript">
+    function imprimer_page(){
+    window.print();
+    }
+</script>
+{% endblock %}
+
+

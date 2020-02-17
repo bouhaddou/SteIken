@@ -36,16 +36,15 @@ class RegelementsController extends AbstractController
      */
     public function new(Request $request,TypesRepository $typeCa,$id,FournisseursRepository $repo): Response
     {
-        $achat = new AchatReg();
-        $form = $this->createForm(RegelementsType::class, $achat);
+        $regelementss = new AchatReg();
+        $form = $this->createForm(RegelementsType::class, $regelementss);
         $form->handleRequest($request);
-
+        $frs = $repo->findOneBy(['id' => $id]);
         if ($form->isSubmitted() && $form->isValid()) {
-            $frs = $repo->findOneBy(['id' => $id]);
             $entityManager = $this->getDoctrine()->getManager();
-            $achat->setType('Regelements')
-                    ->getFournisseur($frs);
-            $entityManager->persist($achat);
+            $regelementss->setType('Regelements')
+                         ->setFournisseur($frs);
+            $entityManager->persist($regelementss);
             $entityManager->flush();
             return $this->redirectToRoute('Regelements_index',['id' => $id]);
         }
@@ -57,14 +56,14 @@ class RegelementsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="Regelements_show", methods={"GET"})
+     * @Route("/{id}/sh", name="Regelements_show", methods={"GET"})
      */
     public function show(AchatReg $Regelements,TypesRepository $typeCa): Response
     {
         return $this->render('admin/Regelements/show.html.twig', [
             'Regelement' => $Regelements,
             'typee' => $typeCa->findAll(),
-            'Achat' => $Regelements,
+            
         ]);
     }
 
@@ -78,7 +77,7 @@ class RegelementsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('Regelements_index');
+            return $this->redirectToRoute('Regelements_index',['id' => $Regelements->getFournisseur()->getId() ]);
         }
 
         return $this->render('admin/Regelements/edit.html.twig', [
@@ -89,7 +88,7 @@ class RegelementsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="Regelements_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="Regelements_delete", methods={"DELETE"})
      */
     public function delete(Request $request, AchatReg $Regelements): Response
     {
@@ -99,6 +98,6 @@ class RegelementsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('Regelements_index');
+        return $this->redirectToRoute('Regelements_index',['id' => $Regelements->getFournisseur()->getId() ]);
     }
 }

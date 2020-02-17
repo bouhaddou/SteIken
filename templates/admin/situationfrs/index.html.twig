@@ -1,23 +1,27 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Regelements index{% endblock %}
+{% block title %}situation {% endblock %}
 
 {% block body %}
 <div class="container">
-    <h6 class="mt-4 mb-5">Situation de Fournisseur  {{ nom }}</h6>
-
-    <table class=" table table-bordered small"  >
+    <h2  class="text-center mt-5 mb-2">SOCIETE AIT IKEN </h2>
+    <div class="row">
+        <div class="col borderr text-center"><strong>FOURNISSEUR :</strong> 4411  {{ nom }}</div>
+        <div class="col-md-3 offset-md-5 borderr text-center"><strong>RELEVE AU :</strong> {{ "now"|date("d/m/Y") }}</div>
+        <div class="col-md-12 borderr mt-2 mb-2">        
+            <h4 class="text-center pt-1">Situation de Fournisseur  {{ nom }}</h4>
+        </div>
+        <div class="col-md-12 m-0 p-0 rege">
+    <table class=" table table-bordered small m-0 p-0 "  >
         <thead>
             <tr class="text-center">
                 <th>DATE ECRITURE</td>
-                <th>Pieces</th>
-                <th>libelle</th>
-                <th>Banque</th>
-                <th>Mode</th>
+                <th>N° PIECE</th>
+                <th>LIBELLE</th>
                 <th>debit</th>
                 <th>Credit</th>
-                <th>observation</th>
-                <th>actions</th>
+                <th>LETTRAGE</th>
+                <th>ACTIONS</th>
             </tr>
         </thead>
         <tbody>
@@ -27,20 +31,21 @@
             <tr>
                 <td class="text-center">{{ achatReg.date|date('d-m-Y') }}</td>
                 <td>{{ achatReg.designation }}</td>
-                <td>{{ achatReg.libelle }}</td>
-                <td>{{ achatReg.banque }}</td>
                 <td> {% if achatReg.Mode is empty %}
-                        null
+                      
                      {% else %}
                      {{ achatReg.Mode.modeReg   }}
                       {% endif %}
                       </td>
-                <td class="text-center">{{ achatReg.debit|number_format(2, '.', ',') }}</td>
-                <td class="text-center">{{ achatReg.credit|number_format(2, '.', ',') }}</td>
+                <th class="text-center">{% if  achatReg.debit > 0 %} {{ achatReg.debit|number_format(2, '.', ',') }} {% endif %}</th>
+                <th class="text-center">{% if  achatReg.credit > 0 %} {{ achatReg.credit|number_format(2, '.', ',') }} {% endif %}</th>
                 <td>{{ achatReg.observation }}</td>
-                <td>
-                    {# <a href="{{ path('achatReg_show', {'id': achatReg.id}) }}">show</a> #}
-                    {# <a href="{{ path('achatReg_edit', {'id': Regelement.id}) }}">edit</a> #}
+                <td class="text-center">
+                {% if achatReg.type == 'Achats' %}
+                    <a class="text-center" href="{{ path('Achats_edit', {'id': achatReg.id }) }}"><i class="fas fa-edit text-success"></i></a>
+                {% else %}
+                    <a class="text-center" href="{{ path('Regelements_edit', {'id': achatReg.id }) }}"><i class="fas fa-edit text-success"></i></a>
+                {% endif %}
                 </td>
             </tr>
             {% set credit = credit + achatReg.credit %}
@@ -52,19 +57,21 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
+</div>
 <hr class="w-100">
 <div class="row">
-    <div class="col-md-7"></div>
-    <div class="col-md-5">
+    <div class="col-md-5"></div>
+    <div class="col-md-5 rege">
       <table  class="table table-bordered small">
             <tr>
-                <th class="text-center">Total</th>
-                <td class="text-center">{{ debit|number_format(2, '.', ',') }}</td>
-                <td class="text-center">{{ credit|number_format(2, '.', ',') }}</td>
+                <th class="text-center">MONTANT TOTAL</th>
+                <td class="text-center"><strong>{{ debit|number_format(2, '.', ',') }}</strong></td>
+                <td class="text-center"><strong>{{ credit|number_format(2, '.', ',') }}</strong></td>
             </tr>
             <tr>
-                <th colspan="2" class="text-center" >Solde</th>
-                <td class="text-center">{{ (debit - credit)|number_format(2, '.', ',') }}</td>
+                <th colspan="2" class="text-center" >SOLDE</th>
+                <td class="text-center"><strong>{{ (debit - credit)|number_format(2, '.', ',') }}</strong></td>
             </tr>
             <tr>
                 <th colspan="2" class="text-center" >IMPAYES</th>
@@ -72,12 +79,23 @@
             </tr>
             <tr>
                 <th colspan="2" class="text-center" >SOLDE A PAYER</th>
-                <td class="text-center">{{ (debit - credit)|number_format(2, '.', ',') }}</td>
+                <td class="text-center"><strong>{{ (debit - credit)|number_format(2, '.', ',') }}</strong></td>
             </tr>
     </table>
     </div>
+      <div class="col-md-2"></div>
+      <form>
+  <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer la situation" />
+</form>
 </div>
     {# <a href="{{ path('Regelements_new') }}">Create new</a> #}
+    
+
 </div>
 
+<script type="text/javascript">
+    function imprimer_page(){
+    window.print();
+    }
+</script>
 {% endblock %}

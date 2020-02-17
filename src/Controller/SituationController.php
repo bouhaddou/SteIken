@@ -35,11 +35,11 @@ class SituationController extends AbstractController
     /**
      * @Route("/All/fournisseurs", name="situation_frsAll")
      */
-    public function AllAchat(AchatRegRepository $achatReg)
+    public function AllAchat(FournisseursRepository $repo)
     {
-       
-        return $this->render('admin/situationfrs/index.html.twig', [
-            'achatRegs' => $achatReg->findAll(),
+      
+        return $this->render('admin/situationfrs/situationAll.html.twig', [
+            'frs' => $repo->findAll(),
         ]);
     }
 

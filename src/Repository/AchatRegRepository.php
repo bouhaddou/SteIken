@@ -44,6 +44,8 @@ class AchatRegRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+
     /*
     public function findOneBySomeField($value): ?AchatReg
     {

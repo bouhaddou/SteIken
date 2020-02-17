@@ -60,6 +60,24 @@ class Fournisseurs
             $this->date = new \DateTime();
         }
     }
+
+    /**
+     * Recupérer le total de debit
+     * @return float
+     */
+    public function getSoldeFrs()
+    {
+        $sumDebit = array_reduce($this->achatRegs->toArray(),function($total,$achat){
+            return $total + $achat->getDebit();
+        },0);
+
+        $sumCredit = array_reduce($this->achatRegs->toArray(),function($total,$achat){
+            return $total + $achat->getCredit();
+        },0);
+
+      return $sumDebit - $sumCredit;
+    }
+
     public function __construct()
     {
         $this->achatRegs = new ArrayCollection();

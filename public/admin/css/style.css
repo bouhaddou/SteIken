@@ -2,3 +2,16 @@
     padding: 0px;
     margin: 0px;;
 }
+
+.borderr {
+    border: 1px solid #778899 !important;
+}
+
+.rege table tr td,.rege table tr th {
+    margin: 0px;
+    padding: 4px;
+}
+
+.rege table tr td, .rege table tr th{
+    border: 1px solid 	#778899 !important;
+}
